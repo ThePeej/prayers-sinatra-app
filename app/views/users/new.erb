@@ -1,10 +1,10 @@
-<% if !!flash[:message] %>
-  <h3 style="color:red;""><%= flash[:message] %></h3>
+<% if !!flash[:error] %>
+  <h3 style="color:red;""><%= flash[:error] %></h3>
 <% end %>
 
 <h1>Create an Account</h1>
 <form method="post" action="/signup">
-	</div>
+	<div>
 	<input type="text" id="username" name="username" placeholder="Username:"/>
 	<br><br>
 	<input type="text" id="email" name="email" placeholder="Email:"/>

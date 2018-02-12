@@ -1,0 +1,14 @@
+<% if !!flash[:error] %>
+  <h3 style="color:red;"><%= flash[:error] %></h3>
+<% end %>
+
+<h1>Login to Account</h1>
+<form method="post" action="/login">
+	<div>
+	<input type="text" id="email" name="email" placeholder="Email:"/>
+	<br><br>
+	<input type="password" id="password" name="password" placeholder="Password:"/>
+	<br><br>
+	</div>
+	<input type="submit" id="Sign Up" value="Sign Up"/>
+</form>
