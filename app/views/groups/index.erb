@@ -1,1 +1,15 @@
+<% if !!flash[:greeting] %>
+    <h4><%= flash[:greeting] %></h4>
+    <br>
+<% end %>
+<a href="/groups/new">Create New Group</a>
+
+
 <h1>Groups</h1>
+
+<ul>
+	<% @groups.each do |group| %>
+		<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
+	<% end %>
+</ul>
+
