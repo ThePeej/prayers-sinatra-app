@@ -1,0 +1,25 @@
+<% if !!flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1>Create an Account</h1>
+<form method="post" action="/signup">
+	</div>
+	<input type="text" id="username" name="username" placeholder="Username:"/>
+	<br><br>
+	<input type="text" id="email" name="email" placeholder="Email:"/>
+	<br><br>
+	<input type="password" id="password" name="password" placeholder="Password:"/>
+	<br><br>
+	</div>
+	<div>
+	<h4>Optional:</h4>
+	<input type="text" id="name" name="name" placeholder="name:"/>
+	<br><br>
+	<input type="text" id="church" name="church" placeholder="Home Church:"/>
+	<br><br>
+	<input type="text" id="fverse" name="verse" placeholder="Favorite Verse:"/>
+	</div>
+	<br><br>
+	<input type="submit" id="Sign Up" value="Sign Up"/>
+</form>

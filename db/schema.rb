@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212031451) do
+ActiveRecord::Schema.define(version: 20180212155214) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180212031451) do
   create_table "prayers", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
+    t.boolean "anonymous", default: false
   end
 
   create_table "user_groups", force: :cascade do |t|
@@ -33,6 +34,8 @@ ActiveRecord::Schema.define(version: 20180212031451) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "church"
+    t.text "verse"
   end
 
 end
