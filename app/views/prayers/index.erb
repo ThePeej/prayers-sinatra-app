@@ -1,1 +1,13 @@
-<h1>So many prayers to pray about!</h1>
+<% if !!flash[:greeting] %>
+  <h3"><%= flash[:greeting] %></h3>
+  <br>
+<% end %>
+
+<a href="/prayers/new">New Prayer Request</a>
+
+<h2>So many prayers to pray about!</h2>
+<ul>
+<% @prayers.each do |prayer| %>
+	<a href="/prayers/<%=prayer.id%>"><li><%=prayer.content%></li></a>
+<% end %>
+</ul>
