@@ -22,6 +22,7 @@ class UserController < ApplicationController
 
 	get '/login' do
 		if logged_in?
+			flash.next[:greeting] = "Already logged in as #{current_user.username}"
 			redirect '/prayers'
 		else
 			erb :"users/login"
@@ -55,9 +56,14 @@ class UserController < ApplicationController
 	end
 
 	get '/logout' do
-		session.clear
-		flash.next[:greeting] = "You've been logged out"
-		redirect '/prayers'
+		if logged_in?
+			session.clear
+			flash.next[:greeting] = "You've been logged out"
+			redirect '/prayers'
+		else
+			flash.next[:greeting] = "You were not logged in"
+			redirect '/prayers'
+		end
 	end
 
 end
