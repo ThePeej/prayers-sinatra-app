@@ -1,0 +1,6 @@
+<h1>You are trying to leave <%=@group.name%></h1>
+<form method="post" action="/groups/<%=@group.id%>/leave">
+	<input type="submit" value="Confirm"/>
+</form>
+<br>
+<a href="/group/<%=@group.id%>">Cancel</a>

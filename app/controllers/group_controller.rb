@@ -2,7 +2,6 @@ class GroupController <ApplicationController
 
 	get '/groups' do 
 		@groups = Group.all.find_all{|group|!group.private?}
-		binding.pry
 		erb :"groups/index"
 	end
 
@@ -70,6 +69,24 @@ class GroupController <ApplicationController
 		group.save
 		flash.next[:message] = "You've joined the group!"
 		redirect "/groups/#{group.id}"
+	end
+
+	get '/groups/:id/leave' do
+		@group = Group.find(params[:id])
+		if logged_in?
+			erb :"groups/leave"
+		else
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
+	end
+
+	post '/groups/:id/leave' do
+		group = Group.find(params[:id])
+		group.members.delete(current_user)
+		group.save
+		flash.next[:message] = "You've left the group"
+		redirect "/groups"
 	end
 
 end
