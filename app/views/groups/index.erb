@@ -9,7 +9,7 @@
 
 <ul>
 	<% @groups.each do |group| %>
-		<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
+		<a href="/groups/<%=group.id%>"><li><%=group.name%> - <%=group.leader.name%></li></a>
 	<% end %>
 </ul>
 

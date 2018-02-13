@@ -13,7 +13,7 @@ class GroupController <ApplicationController
 		group = Group.new(:name => params["name"], :description => params["description"])
 		group.private == false if !!params["public"]
 		group.leader = current_user
-		group.users << current_user
+		group.member << current_user
 		if group.save
 			redirect "/groups/#{group.id}"
 		else
@@ -27,7 +27,7 @@ class GroupController <ApplicationController
 		# binding.pry
 		if @group.private == false
 			erb :"groups/show"
-		elsif @group.private == true && @group.users.any?{|user| user.id == current_user.id}
+		elsif @group.private == true && @group.members.any?{|member| member.id == current_user.id}
 			erb :"groups/show"
 		else
 			flash.next[:greeting] = "You do not have access to view that group"
