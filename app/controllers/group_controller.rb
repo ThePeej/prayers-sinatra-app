@@ -1,7 +1,8 @@
 class GroupController <ApplicationController
 
 	get '/groups' do 
-		@groups = Group.all
+		@groups = Group.all.find_all{|group|!group.private?}
+		binding.pry
 		erb :"groups/index"
 	end
 
