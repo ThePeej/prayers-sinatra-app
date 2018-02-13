@@ -1,17 +1,33 @@
+<% if !!flash[:message] %>
+  <h4 style="color:green;""><%= flash[:message] %></h4>
+<% end %>
+
+<% if !!flash[:error] %>
+  <h4 style="color:red;""><%= flash[:error] %></h4>
+<% end %>
+
 <h1><%=@group.name%></h1>
+<h3>Leader: </h3>
+<%=@group.leader.name %>
 <br>
 <h3>Description:</h3>
 <p><%=@group.description%></p>
 <br>
 <br>
 
+
+
 <h3>Members: </h3>
 <ul>
 	<% @group.members.each do |user| %>
-		<li><%=user.username%></li>
+		<li><%=user.name%></li>
 	<% end %>
 </ul>
 
-<% if @group.private == false %>
+<% if !@group.private? %>
     <a href="/groups/<%=@group.id%>/join">Join Group</a>
+<% end %>
+
+<% if @group.leader == current_user %>
+    <a href="/groups/<%=@group.id%>/edit">Edit Group</a>
 <% end %>

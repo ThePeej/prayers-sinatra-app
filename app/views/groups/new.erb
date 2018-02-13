@@ -5,12 +5,14 @@
 <h1>Create a Prayer Group</h1>
 <form method="post" action="/groups">
 	<div>
+	<label for="name">Group Name: </label>	
 	<input type="text" id="name" name="name" placeholder="Group name:"/>
 	<br><br>
+	<label for="description">Group Description: </label>
 	<input type="text" id="description" name="description" placeholder="Group description:"/>
 	<br><br>
-	<label for="public_group">Is this a public group? </label>
-	<input type="checkbox" id="prayer_group" name="public">
+	<label for="private">Is this a private group? </label>
+	<input type="checkbox" id="private" name="private" checked>
 	<br><br>
 	<input type="submit" value="Create Group"/>
 </form>

@@ -1,0 +1,19 @@
+<% if !!flash[:error] %>
+  <h4 style="color:red;""><%= flash[:error] %></h4>
+<% end %>
+
+<h1>Edit <%=@group.name%></h1>
+<form method="post" action="/groups/<%=@group.id%>">
+	<input type="hidden" id="hidden" name="_method" value="patch"/>
+	<div>
+	<label for="name">Group Name: </label>
+	<input type="text" id="name" name="name" value="<%=@group.name%>"/>
+	<br><br>
+	<label for="description">Group Description: </label>
+	<input type="text" id="description" name="description" value="<%=@group.description%>"/>
+	<br><br>
+	<label for="private">Is this a private group? </label>
+	<input type="checkbox" id="private" name="private"<%='checked' if @group.private? %>>
+	<br><br>
+	<input type="submit" value="Edit Group"/>
+</form>
