@@ -21,6 +21,8 @@ class GroupController <ApplicationController
 		end
 	end
 
+
+
 	get '/groups/:id' do
 		@group = Group.find(params[:id])
 		if @group.private? == false
@@ -48,6 +50,24 @@ class GroupController <ApplicationController
 		group = Group.find(params[:id])
 		group.update(:name => params["name"], :description => params["description"], :private? => !!params["private"])
 		flash.next[:message] = "#{group.name} successfully edited!"
+		redirect "/groups/#{group.id}"
+	end
+
+	get '/groups/:id/join' do
+		@group = Group.find(params[:id])
+		if logged_in?
+			erb :"groups/join"
+		else
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
+	end
+
+	post '/groups/:id/join' do
+		group = Group.find(params[:id])
+		group.members << current_user
+		group.save
+		flash.next[:message] = "You've joined the group!"
 		redirect "/groups/#{group.id}"
 	end
 

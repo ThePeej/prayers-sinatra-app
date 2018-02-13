@@ -1,0 +1,6 @@
+<h1>You are trying to join <%=@group.name%></h1>
+<form method="post" action="/groups/<%=@group.id%>/join">
+	<input type="submit" value="Let's do it!"/>
+</form>
+<br>
+<a href="/group/<%=@group.id%>">Cancel</a>

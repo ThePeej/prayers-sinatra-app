@@ -24,9 +24,15 @@
 	<% end %>
 </ul>
 
-<% if !@group.private? %>
+<% if !@group.private? && !@group.members.include?(current_user) %>
     <a href="/groups/<%=@group.id%>/join">Join Group</a>
 <% end %>
+
+<% if @group.leader != current_user && @group.members.include?(current_user) %>
+    <a href="/groups/<%=@group.id%>/leave">Leave Group</a>
+<% end %>
+
+<br><br>
 
 <% if @group.leader == current_user %>
     <a href="/groups/<%=@group.id%>/edit">Edit Group</a>

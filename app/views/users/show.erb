@@ -13,7 +13,7 @@
 <h4><%= "You have not joined any groups yet" if @user.groups.size == 0 %></h4>
 <ul>
 	<%@user.groups.each do |group| %>
-		<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
+		<a href="/groups/<%=group.id%>"><li><%=group.name%> - <%=group.leader.name%></li></a>
 	<% end %>
 </ul>
 <br><br>
