@@ -20,3 +20,21 @@ Favorite Verse: Romans 12:2 (ESV) - Do not be conformed to this world, but be tr
 MCC CA Midsize
 
 We meet at 7pm on Weds to study, but we have dinner together beforehand! Feel free to join! We're currently going through the Psalm 119 study by Matt Chandler
+
+
+-------------------
+
+Prayers - (belong to members, members have many prayers. Groups have many prayers)
+
+Group#prayers on Group page should display all group members' prayers
+
+Public prayers should be displayed on /prayers page (outside of any group)
+
+Optional - Prayer show page will allow for comments from other users. (comments belong to prayers, prayers have many comments)
+
+Prayers should also have creator who can delete prayer
+
+Prayers posted anonymously can still be deleted if user has account and is logged in prior to posting.
+
+Prayers posted anonymously by user not using an account cannot be deleted (except for by group leader)
+
