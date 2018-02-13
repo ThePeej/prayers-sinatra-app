@@ -12,6 +12,7 @@ class GroupController <ApplicationController
 	post '/groups' do
 		group = Group.new(:name => params["name"], :description => params["description"])
 		group.private == false if !!params["public"]
+		group.leader = current_user
 		group.users << current_user
 		if group.save
 			redirect "/groups/#{group.id}"

@@ -1,4 +1,4 @@
 class UserGroup < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :group 
+	belongs_to :group_member, :class_name=> "User", :foreign_key => "user_id"
+	belongs_to :group
 end

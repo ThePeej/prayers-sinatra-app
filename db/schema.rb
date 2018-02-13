@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212155214) do
+ActiveRecord::Schema.define(version: 20180212213906) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "private", default: true
+    t.integer "leader_id"
   end
 
   create_table "prayers", force: :cascade do |t|
