@@ -1,0 +1,7 @@
+<h1>Are you sure you want to delete <%=@group.name%></h1>
+<form method="post" action="/groups/<%=@group.id%>/delete">
+	<input type="hidden" id="hidden" name="_method" value="delete"/>
+	<input type="submit" value="Confirm"/>
+</form>
+<br>
+<a href="/group/<%=@group.id%>">Cancel</a>

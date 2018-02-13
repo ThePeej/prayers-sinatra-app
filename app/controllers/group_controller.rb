@@ -89,4 +89,42 @@ class GroupController <ApplicationController
 		redirect "/groups"
 	end
 
+	get '/groups/:id/delete' do
+		@group = Group.find(params[:id])
+		if logged_in? && @group.leader == current_user
+			erb :"groups/delete"
+		elsif logged_in?
+			flash.next[:error] = "You do not have permission to delete this group"
+			redirect "/groups/#{@group.id}"
+		else
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
+	end
+
+	post '/groups/:id/delete' do
+		group = Group.find(params[:id])
+		group.members.delete(current_user)
+		group.save
+		flash.next[:message] = "You've left the group"
+		redirect "/groups"
+	end
+
+	get '/groups/:id/add_member' do
+		redirect "/groups/#{params[:id]}"
+	end
+
+	post '/groups/:id/add_member' do
+		group = Group.find(params[:id])
+		if User.find_by(:username => params["add_member"]) || User.find_by(:email => params["add_member"])
+			new_member = User.find_by(:username => params["add_member"]) if !!User.find_by(:username => params["add_member"])
+			new_member = User.find_by(:email => params["add_member"]) if !!User.find_by(:email => params["add_member"])
+			flash.next[:message] = "Added #{new_member.name} to the group!"
+			group.members << new_member
+		else
+			flash.next[:message] = "Unable to find that person"
+		end
+		redirect "/groups/#{group.id}"
+	end
+
 end
