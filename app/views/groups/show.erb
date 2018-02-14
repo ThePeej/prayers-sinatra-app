@@ -36,7 +36,7 @@
 <br><br>
 
 <h3>Group Prayers: </h3>
-<% @group.prayers.each do |prayer| %>
+<% @group.prayers.sort.each do |prayer| %>
 	<% if prayer.anonymous? %>
 		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
 	<% else %>

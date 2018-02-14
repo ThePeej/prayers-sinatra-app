@@ -5,7 +5,8 @@ class Group < ActiveRecord::Base
 	has_many :user_groups
 	has_many :members, through: :user_groups, :source => :group_member
 
-	has_many :prayers, through: :members
+	has_many :group_prayers
+	has_many :prayers, through: :group_prayers
 
 	belongs_to :leader, :class_name => "User"
 end

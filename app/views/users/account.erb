@@ -19,7 +19,7 @@
 <br><br>
 
 <h2>Prayers: </h2>
-<% @user.prayers.each do |prayer| %>
+<% @user.prayers.sort.each do |prayer| %>
 	<% if prayer.anonymous? %>
 		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
 	<% else %>

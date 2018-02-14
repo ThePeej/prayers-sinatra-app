@@ -16,7 +16,7 @@
 <br><br>
 
 <h2>Public Prayers: </h2>
-<% @user.prayers.find_all{|prayer|prayer.public?}.each do |prayer| %>
+<% @user.prayers.find_all{|prayer|prayer.public?}.sort.each do |prayer| %>
 	<% if !prayer.anonymous? %>
 		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.overview%></li></a>
 	<% end %>

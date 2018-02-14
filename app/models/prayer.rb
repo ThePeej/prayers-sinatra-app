@@ -3,4 +3,7 @@ class Prayer < ActiveRecord::Base
 	
 	belongs_to :author, :class_name => "User"
 
+	has_many :group_prayers
+	has_many :groups, through: :group_prayers
+
 end
