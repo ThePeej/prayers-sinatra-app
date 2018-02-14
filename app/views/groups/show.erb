@@ -8,7 +8,7 @@
 
 <h1><%=@group.name%></h1>
 <h3>Leader: </h3>
-<%=@group.leader.name %>
+<%=@group.leader.username %>
 <br>
 <h3>Description:</h3>
 <p><%=@group.description%></p>
@@ -20,7 +20,7 @@
 <h3>Members: </h3>
 <ul>
 	<% @group.members.each do |user| %>
-		<li><%=user.name%></li>
+		<a href="/users/<%=user.id%>"><li><%=user.username%></li></a>
 	<% end %>
 </ul>
 
@@ -40,7 +40,7 @@
 	<% if prayer.anonymous? %>
 		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
 	<% else %>
-		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.name%>: <%=prayer.overview%></li></a>
+		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.username%>: <%=prayer.overview%></li></a>
 	<% end %>
 <% end %>
 <br><br>

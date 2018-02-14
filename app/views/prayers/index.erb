@@ -16,7 +16,7 @@
 		<% if prayer.anonymous? %>
 			<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
 		<% else %>
-			<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.name%>: <%=prayer.overview%></li></a>
+			<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.username%>: <%=prayer.overview%></li></a>
 		<% end %>
 	<% end %>
 	</ul>

@@ -1,0 +1,26 @@
+<% if !!flash[:error] %>
+  <h4 style="color:red;""><%= flash[:error] %></h4>
+<% end %>
+
+<h1>Create an Account</h1>
+<form method="post" action="/users/<%@user.id%>">
+	<input type="hidden" id="hidden" name="_method" value="patch"
+	<div>
+	<input type="text" id="username" name="username" placeholder="Username:" value="<%= @user.username %>"/>
+	<br><br>
+	<input type="text" id="email" name="email" placeholder="Email:" value="<%= @user.email %>"/>
+	<br><br>
+	<input type="password" id="password" name="password" placeholder="Password:" value="<%= @user.password %>"/>
+	<br><br>
+	</div>
+	<div>
+	<h4>Optional:</h4>
+	<input type="text" id="name" name="name" placeholder="name:" value="<%= @user.name %>"/>
+	<br><br>
+	<input type="text" id="church" name="church" placeholder="Home Church:" value="<%= @user.church %>"/>
+	<br><br>
+	<input type="text" id="verse" name="verse" placeholder="Favorite Verse:" value="<%= @user.verse %>"/>
+	</div>
+	<br><br>
+	<input type="submit" id="Sign Up" value="Sign Up"/>
+</form>

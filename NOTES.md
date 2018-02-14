@@ -38,7 +38,7 @@ Group leader can manually remove prayer request from group
 
 Groups should display member usernames instead of name?
 
-Add user show page
+
 
 
 
@@ -59,4 +59,6 @@ current_user.groups.first.prayers.first.content is working => Can display prayer
 Group#prayers on Group page should display all group members' prayers
 
 Public prayers should be displayed on /prayers page (outside of any group)
+
+Add user show page
 
