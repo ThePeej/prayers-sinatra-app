@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214032738) do
+ActiveRecord::Schema.define(version: 20180214144330) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20180214032738) do
   end
 
   create_table "prayers", force: :cascade do |t|
-    t.text "content"
+    t.text "description"
     t.integer "author_id"
     t.boolean "anonymous?"
     t.boolean "public?"
+    t.string "overview"
   end
 
   create_table "user_groups", force: :cascade do |t|

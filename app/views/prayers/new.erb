@@ -4,10 +4,11 @@
 
 <h1>New Prayer Request</h1>
 <form method="post" action="/prayers">
-	<label for="prayer_content">What would you like others to pray about?</label>
-	<br>
-	<input type="text" id="prayer_content" name="content">
-	<br>
+	<h4><label for="prayer_content">What would you like others to pray about?</label></h4>
+	<input type="text" id="prayer_content" name="overview" placeholder="What's up? (Brief Overview)" size=60>
+	<br><br>
+	<input type="text" id="prayer_content" name="description" placeholder="Wanna share more details? (optional)" size=60>
+	<br><br>
 	<% if logged_in? %>
 		<label for="anonymous_prayer">Post prayer anonymously? </label>
 		<input type="checkbox" id="anonymous_prayer" name="anonymous">
