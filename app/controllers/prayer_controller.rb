@@ -19,11 +19,6 @@ class PrayerController < ApplicationController
 		prayer.author = current_user
 
 		if prayer.save
-			# params["group_id"].each do |id| #after saving prayer, add prayer to all groups selected in New Prayer form
-			# 	group = Group.find(id)
-			# 	group.prayers << prayer
-			# 	group.save
-			# end
 			flash.next[:greeting] = "Successfully posted a prayer!"
 			redirect '/prayers'
 		else
@@ -54,5 +49,28 @@ class PrayerController < ApplicationController
 			redirect "/prayers"
 		end
 	end
+
+	# prayer delete confirmation
+	get '/prayers/:id/delete' do
+		@prayer = Prayer.find(params[:id])
+		if logged_in? && @prayer.author == current_user
+			erb :"prayers/delete"
+		elsif logged_in?
+			flash.next[:error] = "You do not have permission to delete this prayer"
+			redirect "/prayers"
+		else
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
+	end
+
+
+	delete '/prayers/:id/delete' do
+		prayer = Prayer.find(params[:id])
+		prayer.destroy
+		flash.next[:greeting] = "Prayer was deleted"
+		redirect "/prayers"
+	end
+
 
 end

@@ -47,7 +47,6 @@ Groups should display member usernames instead of name?
 
 ---- OPTIONAL ----
 
-Prayer show page will allow for comments from other users. (comments belong to prayers, prayers have many comments)
 
 
 ----- DONE -----

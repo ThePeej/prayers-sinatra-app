@@ -1,0 +1,10 @@
+<h1><%=@prayer.overview %></h1>
+<p><%=@prayer.description %></p>
+<br><br>
+<h3>Are you sure you want to delete this prayer?</h3>
+<form method="post" action="/prayers/<%=@prayer.id%>/delete">
+	<input type="hidden" id="hidden" name="_method" value="delete"/>
+	<input type="submit" value="Confirm"/>
+</form>
+<br>
+<a href="/prayer/<%=@prayer.id%>">Cancel</a>

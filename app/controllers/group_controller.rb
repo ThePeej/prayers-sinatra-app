@@ -110,11 +110,10 @@ class GroupController <ApplicationController
 		end
 	end
 
-	post '/groups/:id/delete' do
+	delete '/groups/:id/delete' do
 		group = Group.find(params[:id])
-		group.members.delete(current_user)
-		group.save
-		flash.next[:message] = "You've left the group"
+		group.destroy
+		flash.next[:message] = "Group has been deleted"
 		redirect "/groups"
 	end
 
