@@ -15,13 +15,16 @@ class PrayerController < ApplicationController
 	end
 
 	post '/prayers' do
-		# params = {"content"=>"Prayers for me to get over my cold", "public"=>"on", "group_id"=>["2", "3"]}
-		# params = {"content"=>"TEST2", "anonymous"=>"on", "group_id"=>["1", "3"]}
 		prayer = Prayer.new(:content => params["content"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
 		prayer.author = current_user
 		binding.pry
 
 		if prayer.save
+			params["group_id"].each do |id| #after saving prayer, add prayer to all groups selected in New Prayer form
+				group = Group.find(id)
+				group.prayers << prayer
+				group.save
+			end
 			flash.next[:greeting] = "Successfully posted a prayer!"
 			redirect '/prayers'
 		else

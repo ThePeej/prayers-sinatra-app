@@ -33,6 +33,22 @@
 	</form>
 <% end %>
 
+<br><br>
+
+<h3>Group Prayers: </h3>
+<% @group.prayers.each do |prayer| %>
+	<% if prayer.anonymous? %>
+		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.content%></li></a>
+	<% else %>
+		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.name%>: <%=prayer.content%></li></a>
+	<% end %>
+<% end %>
+<br><br>
+
+
+
+<!-- Group administrative buttons -->
+
 <% if !@group.private? && !@group.members.include?(current_user) %>
     <a href="/groups/<%=@group.id%>/join">Join Group</a>
 <% end %>
