@@ -46,11 +46,16 @@ class UserController < ApplicationController
 	get '/account' do
 		if logged_in?
 			@user = current_user
-			erb :"users/show"
+			erb :"users/account"
 		else
 			flash.next[:error] = "Please log in"
 			redirect '/login'
 		end
+	end
+
+	get '/users/:id' do
+		@user = User.find(params[:id])
+		erb :"users/show"
 	end
 
 	get '/users/:id/edit' do

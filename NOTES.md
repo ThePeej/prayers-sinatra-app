@@ -36,6 +36,12 @@ Prayers posted anonymously can still be deleted if user has account and is logge
 
 Group leader can manually remove prayer request from group
 
+Groups should display member usernames instead of name?
+
+Add user show page
+
+
+
 
 
 

@@ -1,9 +1,4 @@
-<h1>Account Info</h1>
-
-
-
-<h4>Username: <%= @user.username %></h4>
-<h4>Email: <%= @user.email %></h4>
+<h1><%= @user.username %></h1>
 <p>--------------------</p>
 <h4>Full Name: <%=@user.name %></h4>
 <h4>Home Church: <%=@user.church %></h4>
@@ -11,6 +6,8 @@
 <br><br>
 <h2>Prayer Groups:</h2>
 <h4><%= "You have not joined any groups yet" if @user.groups.size == 0 %></h4>
+
+
 <ul>
 	<%@user.groups.each do |group| %>
 		<a href="/groups/<%=group.id%>"><li><%=group.name%> - <%=group.leader.name%></li></a>
@@ -18,16 +15,10 @@
 </ul>
 <br><br>
 
-<h2>Prayers: </h2>
-<% @user.prayers.each do |prayer| %>
-	<% if prayer.anonymous? %>
-		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
-	<% else %>
-		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.name%>: <%=prayer.overview%></li></a>
+<h2>Public Prayers: </h2>
+<% @user.prayers.find_all{|prayer|prayer.public?}.each do |prayer| %>
+	<% if !prayer.anonymous? %>
+		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.overview%></li></a>
 	<% end %>
 <% end %>
 <br><br>
-
-
-
-<a href="/users/<%=@user.id%>/edit">Edit Account Info</a>
