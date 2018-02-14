@@ -13,14 +13,17 @@
 	<label for="anonymous_prayer">Post prayer anonymously? </label>
 	<input type="checkbox" id="anonymous_prayer" name="anonymous" <%="checked" if @prayer.anonymous? %>/>
 	<label for="public_prayer">Is this a public prayer? </label>
-	<input type="checkbox" id="prayer_prayer" name="public" <%="checked" if @prayer.public? %>/>
+	<input type="checkbox" id="public_prayer" name="public" <%="checked" if @prayer.public? %>/>
+	<br><br>
 
 	<% if current_user.groups.count > 0 %>
 		<h4>Post to a group?:</h4>
 		<% current_user.groups.each do |group| %>
-			<input type="checkbox" name="group_id[]" value="<%=group.id%>" <%="checked" if group.prayers.include?(@prayer) %>><%=group.name%></input>
+			<label for="group_<%=group.id%>"><%=group.name%></label>
+			<input type="checkbox" id="group_<%=group.id%>" name="group_id[]" value="<%=group.id%>" <%="checked" if group.prayers.include?(@prayer) %>/>
+			<br><br>
 		<% end %>
 	<% end %>
 	<br><br>
-	<input type="submit" value="Submit"/>
+	<input type="submit" value="Edit Prayer"/>
 </form>
