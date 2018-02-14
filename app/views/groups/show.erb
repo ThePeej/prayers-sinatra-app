@@ -26,7 +26,7 @@
 
 <% if @group.leader == current_user %>
 	<form method="post" action="/groups/<%=@group.id%>/add_member">
-		<label for="add_member">Add Member By Email or Username:</label>
+		<label for="add_member">Add Member By Name, Email, or Username:</label>
 		<br>
 		<input type="text" id="add_member" name="add_member"/>
 		<input type="submit" value="Add Member"/>

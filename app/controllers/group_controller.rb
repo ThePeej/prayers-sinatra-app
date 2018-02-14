@@ -127,6 +127,7 @@ class GroupController <ApplicationController
 		if User.find_by(:username => params["add_member"]) || User.find_by(:email => params["add_member"])
 			new_member = User.find_by(:username => params["add_member"]) if !!User.find_by(:username => params["add_member"])
 			new_member = User.find_by(:email => params["add_member"]) if !!User.find_by(:email => params["add_member"])
+			new_member = User.find_by(:name => params["add_member"]) if !!User.find_by(:email => params["add_member"])
 			flash.next[:message] = "Added #{new_member.name} to the group!"
 			group.members << new_member
 		else
