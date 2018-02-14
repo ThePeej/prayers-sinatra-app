@@ -15,8 +15,10 @@
 	<% @prayers.each do |prayer| %>
 		<% if prayer.anonymous? %>
 			<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
+			<br>
 		<% else %>
 			<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.username%>: <%=prayer.overview%></li></a>
+			<br>
 		<% end %>
 	<% end %>
 	</ul>

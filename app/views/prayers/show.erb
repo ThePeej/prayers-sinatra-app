@@ -1,5 +1,10 @@
 <h2><%= @prayer.overview %></h2>
 
+<h3><%= "Description:" if !!@prayer.description %></h3>
+<p><%= @prayer.description %></p>
+
+<br><br>
+
 <% if @prayer.anonymous? && @prayer.author == current_user%>
 	<h4>(You posted this anonymously)</h4>
 <% elsif @prayer.anonymous? %>
@@ -14,11 +19,18 @@
 
 <br>
 
+<h4>Posted in:</h4>
+<ul>
+<%if @prayer.public? %>
+<a href="/prayers"><li>To Public</li></a>
+<% end %>
 
-<h3><%= "Description:" if !!@prayer.description %></h3>
-<p><%= @prayer.description %></p>
+<% @prayer.groups.each do |group| %>
+	<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
+<% end %>
+</ul>
 
-<br><br>
+
 
 <% if @prayer.author == current_user %>
     <a href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>

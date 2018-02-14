@@ -19,6 +19,8 @@ class PrayerController < ApplicationController
 		prayer.author = current_user
 
 		if prayer.save
+			params["group_id"].each {|id|Group.find(id).prayers << prayer} if !!params["group_id"]
+
 			flash.next[:greeting] = "Successfully posted a prayer!"
 			redirect '/prayers'
 		else
