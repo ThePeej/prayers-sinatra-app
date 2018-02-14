@@ -3,15 +3,23 @@
   <br>
 <% end %>
 
+<% if !!flash[:error] %>
+  <h4 style="color:red;""><%= flash[:error] %></h4>
+<% end %>
+
 <a href="/prayers/new">New Prayer Request</a>
 
-<h2>So many prayers to pray about!</h2>
-<ul>
-<% @prayers.each do |prayer| %>
-	<% if prayer.anonymous? %>
-		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
-	<% else %>
-		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.name%>: <%=prayer.overview%></li></a>
+<% if @prayers.count > 0 %>
+	<h2>So many prayers to pray about!</h2>
+	<ul>
+	<% @prayers.each do |prayer| %>
+		<% if prayer.anonymous? %>
+			<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
+		<% else %>
+			<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.name%>: <%=prayer.overview%></li></a>
+		<% end %>
 	<% end %>
+	</ul>
+<% else %>
+	<h2>No public prayers to display</h2>
 <% end %>
-</ul>

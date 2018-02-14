@@ -1,7 +1,7 @@
 class PrayerController < ApplicationController
 
 	get '/prayers' do 
-		@prayers = Prayer.all
+		@prayers = Prayer.all.find_all{|prayer| prayer.public?}
 		erb :"prayers/index"
 	end
 
@@ -30,7 +30,19 @@ class PrayerController < ApplicationController
 			flash.next[:error] = "Prayer post requires overview"
 			redirect '/prayers/new'
 		end
-		
+	end
+
+	get '/prayers/:id' do
+		@prayer = Prayer.find(params[:id])
+		if !logged_in?
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		elsif @prayer.public? || @prayer.author == current_user
+			erb :"prayers/show"
+		else
+			flash.next[:error] = "You do not have access to view that prayer"
+			redirect "/prayers"
+		end
 	end
 
 end

@@ -1,0 +1,29 @@
+<h2><%= @prayer.overview %></h2>
+
+<% if @prayer.anonymous? && @prayer.author == current_user%>
+	<h4>Posted by: <%=@prayer.author.name %>(anonymously)</h4>
+<% elsif @prayer.anonymous? %>
+	<h4>Posted by: Anonymous</h4>
+<% else %>
+	<h4>Posted by: <%=@prayer.author.name %></h4>
+<% end %>
+
+<h4>Posted on <%= @prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%></h4>
+
+<br>
+
+
+<h3><%= "Description:" if !!@prayer.description %></h3>
+<p><%= @prayer.description %></p>
+
+<br><br>
+
+<% if @prayer.author == current_user %>
+    <a href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
+<% end %>
+
+<br>
+
+<% if @prayer.author == current_user %>
+    <a href="/prayers/<%=@prayer.id%>/delete">Delete Prayer</a>
+<% end %>
