@@ -22,9 +22,9 @@ MCC CA Midsize
 We meet at 7pm on Weds to study, but we have dinner together beforehand! Feel free to join! We're currently going through the Psalm 119 study by Matt Chandler
 
 
--------------------
+----- TODO -----
 
-Prayers - (belong to members, members have many prayers. Groups have many prayers)
+Prayer.groups (is this necessary?)
 
 Group#prayers on Group page should display all group members' prayers
 
@@ -37,4 +37,12 @@ Prayers should also have creator who can delete prayer
 Prayers posted anonymously can still be deleted if user has account and is logged in prior to posting.
 
 Prayers posted anonymously by user not using an account cannot be deleted (except for by group leader)
+
+
+
+----- DONE -----
+
+Prayers - (belong to authors, authors have many prayers. Groups have many prayers)
+
+current_user.groups.first.prayers.first.content is working => Can display prayer requests on each group show page
 

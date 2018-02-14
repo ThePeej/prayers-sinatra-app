@@ -10,9 +10,10 @@ class PrayerController < ApplicationController
 	end
 
 	post '/prayers' do
-		raise params.inspect
 		# params = {"content"=>"Prayers for me to get over my cold", "public"=>"on", "group_id"=>["2", "3"]}
 		# params = {"content"=>"TEST2", "anonymous"=>"on", "group_id"=>["1", "3"]}
+		prayer = Prayer.new(:content => params["content"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
+		binding.pry
 	end
 
 end

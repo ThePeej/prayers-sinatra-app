@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   	validates :email, presence: true
   	has_secure_password
   	
-	has_many :prayers
+	has_many :prayers, :foreign_key => "author_id"
 
 	has_many :user_groups
 	has_many :groups, through: :user_groups
