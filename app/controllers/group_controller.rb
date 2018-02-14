@@ -43,7 +43,6 @@ class GroupController <ApplicationController
 	get '/groups/:id/edit' do
 		@group = Group.find(params[:id])
 		if @group.leader = current_user
-			flash.next[:message] = "#{@group.name} successfully created!"
 			erb :"groups/edit"
 		else
 			flash.next[:error] = "You do not have permission to edit this group"
@@ -53,9 +52,13 @@ class GroupController <ApplicationController
 
 	patch '/groups/:id' do
 		group = Group.find(params[:id])
-		group.update(:name => params["name"], :description => params["description"], :private? => !!params["private"])
-		flash.next[:message] = "#{group.name} successfully edited!"
-		redirect "/groups/#{group.id}"
+		if group.update(:name => params["name"], :description => params["description"], :private? => !!params["private"])
+			flash.next[:message] = "#{group.name} successfully edited!"
+			redirect "/groups/#{group.id}"
+		else
+			flash.next[:error] = "Group requires a name"
+			redirect "/groups/#{group.id}/edit"
+		end
 	end
 
 	get '/groups/:id/join' do

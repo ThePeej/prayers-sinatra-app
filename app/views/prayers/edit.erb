@@ -1,0 +1,26 @@
+<% if !!flash[:error] %>
+  <h4 style="color:red;""><%= flash[:error] %></h4>
+<% end %>
+
+<h1>New Prayer Request</h1>
+<form method="post" action="/prayers">
+	<h4><label for="prayer_content">What would you like others to pray about?</label></h4>
+	<input type="text" id="prayer_content" name="overview" placeholder="What's up? (Brief Overview)" size=60>
+	<br><br>
+	<input type="text" id="prayer_content" name="description" placeholder="Wanna share more details? (optional)" size=60>
+	<br><br>
+	<% if logged_in? %>
+		<label for="anonymous_prayer">Post prayer anonymously? </label>
+		<input type="checkbox" id="anonymous_prayer" name="anonymous">
+		<label for="public_prayer">Is this a public prayer? </label>
+		<input type="checkbox" id="prayer_prayer" name="public">
+
+
+		<h4>Post to a group?:</h4>
+		<% current_user.groups.each do |group| %>
+			<input type="checkbox" name="group_id[]" value="<%=group.id%>"><%=group.name%></input>
+		<% end %>
+	<% end %>
+	<br><br>
+	<input type="submit" value="Submit"/>
+</form>

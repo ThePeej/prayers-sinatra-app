@@ -45,4 +45,14 @@ class PrayerController < ApplicationController
 		end
 	end
 
+	get '/prayers/:id/edit' do
+		@prayer = Prayer.find(params[:id])
+		if @prayer.author == current_user
+			erb :"prayers/edit"
+		else
+			flash.next[:error] = "You do not have permission to edit this prayer"
+			redirect "/prayers"
+		end
+	end
+
 end
