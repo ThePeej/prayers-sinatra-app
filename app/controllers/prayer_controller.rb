@@ -52,6 +52,24 @@ class PrayerController < ApplicationController
 		end
 	end
 
+	patch '/prayers/:id' do
+		prayer = Prayer.find(params[:id])
+		
+		if prayer.update(:overview => params["overview"],:description => params["description"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
+			current_user.groups.each do |group|
+				if group.prayers.include?(prayer)
+					group.prayers.delete(prayer)
+				end
+			end
+			params["group_id"].each {|id|Group.find(id).prayers << prayer} if !!params["group_id"]
+			redirect "/prayers/#{prayer.id}"
+		else
+			flash.next[:error] = "Prayer post requires overview"
+			redirect "/prayers/#{prayer.id}/edit"
+		end
+
+	end
+
 	# prayer delete confirmation
 	get '/prayers/:id/delete' do
 		@prayer = Prayer.find(params[:id])

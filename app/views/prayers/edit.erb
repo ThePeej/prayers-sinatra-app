@@ -3,7 +3,7 @@
 <% end %>
 
 <h1>Edit Prayer Request</h1>
-<form method="patch" action="/prayers/<%=@prayer.id%>">
+<form method="post" action="/prayers/<%=@prayer.id%>">
 	<input type="hidden" id="hidden" name="_method" value="patch"/>
 	<h4><label for="prayer_overview">What would you like others to pray about?</label></h4>
 	<input type="text" id="prayer_overview" name="overview" size=60 value="<%=@prayer.overview%>"/>
