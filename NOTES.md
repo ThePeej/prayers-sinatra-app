@@ -24,8 +24,6 @@ We meet at 7pm on Weds to study, but we have dinner together beforehand! Feel fr
 
 ----- TODO -----
 
-Prayer.groups (is this necessary?)
-
 Group#prayers on Group page should display all group members' prayers
 
 Public prayers should be displayed on /prayers page (outside of any group)
@@ -37,6 +35,10 @@ Prayers should also have creator who can delete prayer
 Prayers posted anonymously can still be deleted if user has account and is logged in prior to posting.
 
 Prayers posted anonymously by user not using an account cannot be deleted (except for by group leader)
+
+
+
+---- OPTIONAL ----
 
 
 

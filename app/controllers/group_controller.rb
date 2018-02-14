@@ -6,7 +6,12 @@ class GroupController <ApplicationController
 	end
 
 	get '/groups/new' do
-		erb :"groups/new"
+		if logged_in?
+			erb :"groups/new"
+		else
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
 	end
 
 	post '/groups' do
