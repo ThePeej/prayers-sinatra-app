@@ -3,28 +3,31 @@
   		<h4><%= flash[:error] %></h4>
   	</div>
 <% end %>
-
-<h1>New Prayer Request</h1>
-<form method="post" action="/prayers">
-	<h4><label for="prayer_overview">What would you like others to pray about?</label></h4>
-	<input type="text" id="prayer_overview" name="overview" placeholder="What's up? (Brief Overview)" size=60/>
-	<br><br>
-	<input type="text" id="prayer_description" name="description" placeholder="Wanna share more details? (optional)" size=60/>
-	<br><br>
-	<label for="anonymous_prayer">Post prayer anonymously? </label>
-	<input type="checkbox" id="anonymous_prayer" name="anonymous"/>
-	<label for="public_prayer">Is this a public prayer? </label>
-	<input type="checkbox" id="public_prayer" name="public" <%="checked" if current_user.groups.count == 0 %>/>
-	<br><br>
-
-	<% if current_user.groups.count > 0 %>
-		<h4>Post to a group?:</h4>
-		<% current_user.groups.each do |group| %>
-			<label for="group_<%=group.id%>"><%=group.name%></label>
-			<input type="checkbox" id="group_<%=group.id%>" name="group_id[]" value="<%=group.id%>"/>
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<h1 class="title">New Prayer Request</h1>
+		<form method="post" action="/prayers">
+			<h4><label for="prayer_overview">What would you like others to pray about?</label></h4>
+			<input class="input" type="text" id="prayer_overview" name="overview" placeholder="What's up? (Brief Overview)" size=60/>
 			<br><br>
-		<% end %>
-	<% end %>
-	<br><br>
-	<input type="submit" value="Post Prayer"/>
-</form>
+			<textarea class="textarea" type="text" id="prayer_description" name="description" placeholder="Wanna share more details? (optional)" size=60/></textarea>
+			<br><br>
+			<label for="anonymous_prayer">Post prayer anonymously? </label>
+			<input type="checkbox" id="anonymous_prayer" name="anonymous"/>
+			<label for="public_prayer">Is this a public prayer? </label>
+			<input type="checkbox" id="public_prayer" name="public" <%="checked" if current_user.groups.count == 0 %>/>
+			<br><br>
+
+			<% if current_user.groups.count > 0 %>
+				<h4>Post to a group?:</h4>
+				<% current_user.groups.each do |group| %>
+					<label for="group_<%=group.id%>"><%=group.name%></label>
+					<input type="checkbox" id="group_<%=group.id%>" name="group_id[]" value="<%=group.id%>"/>
+					<br><br>
+				<% end %>
+			<% end %>
+			<br><br>
+			<input type="submit" value="Post Prayer"/>
+		</form>
+	</div>
+</div>

@@ -44,7 +44,7 @@ img.center {
 }
 
 .new_prayer {
-	float: right;
+	margin-top: 8px;
 }
 
 .box.prayer {
