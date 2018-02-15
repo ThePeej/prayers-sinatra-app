@@ -1,5 +1,7 @@
 <% if !!flash[:error] %>
-  <h4 style="color:red;""><%= flash[:error] %></h4>
+	<div class="notification is-danger">
+  		<h4><%= flash[:error] %></h4>
+  	</div>
 <% end %>
 
 <h1>Create a Prayer Group</h1>

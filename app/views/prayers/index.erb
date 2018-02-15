@@ -1,10 +1,14 @@
 <% if !!flash[:greeting] %>
-  <h4><%= flash[:greeting] %></h4>
+    <div class="notification is-success">
+	  	<h4><%= flash[:greeting] %></h4>
+	</div>
   <br>
 <% end %>
 
 <% if !!flash[:error] %>
-  <h4 style="color:red;""><%= flash[:error] %></h4>
+	<div class="notification is-danger">
+  		<h4><%= flash[:error] %></h4>
+  	</div>
 <% end %>
 
 <div class="columns">

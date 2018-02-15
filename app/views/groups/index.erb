@@ -1,6 +1,7 @@
-<% if !!flash[:greeting] %>
-    <h4><%= flash[:greeting] %></h4>
-    <br>
+<% if !!flash[:error] %>
+	<div class="notification is-danger">
+  		<h4><%= flash[:error] %></h4>
+  	</div>
 <% end %>
 <a href="/groups/new">Create New Group</a>
 
