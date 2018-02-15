@@ -2,48 +2,65 @@
   <h4 style="color:red;""><%= flash[:error] %></h4>
 <% end %>
 
-<form class="pure-form pure-form-aligned" method="post" action="/signup">
-	<h1>Create an Account</h1>
-	<fieldset>
-		<div class="pure-control-group">
-			<label for="username">Username*</label>
-			<input type="text" id="username" name="username" placeholder="Username"/>
-			<span class="pure-form-message-inline">*Required</span>
-		</div>
-
-		<div class="pure-control-group">
-			<label for="email">Email*</label>
-			<input type="text" id="email" name="email" placeholder="Email"/>
-		</div>
-
-		<div class="pure-control-group">
-			<label for="password">Password*</label>
-			<input type="password" id="password" name="password" placeholder="Password:"/>
-		</div>
-	</fieldset>	
-
-	<fieldset>
-		<h4>Optional:</h4>
-		<div class="pure-control-group">
-			<label for="name">Name</label>
-			<input type="text" id="name" name="name"/>
-		</div>
-
-		<div class="pure-control-group">
-			<label for="church">Home Church:</label>
-			<input type="text" id="church" name="church"/>
-		</div>
-
-		<div class="pure-control-group">
-			<label for="verse">Favorite Verse</label>
-			<input type="text" id="verse" name="verse"/>
-		</div>
-
-		<div class="pure-controls">
-			<button type="submit" class="pure-button pure-button-primary">Submit</button>
-		</div>
-<!-- 		<input type="submit" id="Sign Up" value="Sign Up"/> -->
-		
-	</fieldset>
-	
-</form>
+<div class="columns">
+	<div class="column is-one-third is-offset-one-third">
+		<h1 class="title">Create an Account</h1>
+		<p class="subtitle">*required</p>
+		<form method="post" action="/signup">
+			<div class="field">
+				
+				<label class="label" for="username" >Username*</label>
+				<p class="control has-icons-left">
+				    <input class="input" id="username" type="text" name="username"/>
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-user"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label for="email" ">Email*</label>
+				<p class="control has-icons-left">
+				    <input class="input" id="email" type="email" id="email" name="email" />
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-envelope"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label" for="password" >Password*</label>
+				<p class="control has-icons-left">
+					<input class ="input" id="password" type="password" name="password"/>
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-lock"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+				<p class="help">Optional:</p>
+				<label class="label" for="name">Name</label>
+				<p class="control has-icons-left">
+				    <input class="input" type="text" id="name" name="name"/>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label" for="church">Home Church</label>
+				<p class="control has-icons-left">
+				    <input class="input" type="text" id="church" name="church"/>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label" for="verse">Favorite Verse</label>
+				<p class="control has-icons-left">
+					<input class="input" type="text" id="verse" name="verse"/>
+				</p>
+			</div>
+			<div class="field">
+			    <p class="control">
+			    	<button class="button is-success">
+			      	Sign Up
+			    	</button>
+			  	</p>
+			</div>
+		</form>
+	</div>
+</div>
