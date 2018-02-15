@@ -1,5 +1,7 @@
+
+
 body {
-   
+
 }
 
 
@@ -9,6 +11,11 @@ footer {
     bottom:0;
     width:100%;
     height:40px;
+}
+
+.navbar {
+	border-bottom: 2px solid Gainsboro;
+	  margin-bottom: 1em;
 }
 
 .centered {
@@ -30,4 +37,16 @@ img.center {
 
 .landing {
 	padding-top: 10%;
+}
+
+.prayer {
+	margin-top: 5px;
+}
+
+.new_prayer {
+	float: right;
+}
+
+.box.prayer {
+	background: GhostWhite;
 }
