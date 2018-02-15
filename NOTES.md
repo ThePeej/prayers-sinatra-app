@@ -4,9 +4,8 @@
 
 ----- TODO -----
 
-Improve Visuals? Potentially just slap on a bootstrap or other css framework default and modify slightly???
 
-
+Read Me
 
 
 
@@ -17,7 +16,7 @@ Improve Visuals? Potentially just slap on a bootstrap or other css framework def
 
 ---- OPTIONAL ----
 
-
+Improve Visuals? Potentially just slap on a bootstrap or other css framework default and modify slightly???
 
 
 
