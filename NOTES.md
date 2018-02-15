@@ -4,7 +4,7 @@
 
 ----- TODO -----
 
-Improve Visuals?
+Improve Visuals? Potentially just slap on a bootstrap or other css framework default and modify slightly???
 
 
 
