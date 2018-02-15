@@ -5,6 +5,7 @@ class UserController < ApplicationController
 			flash.next[:greeting] = "Already logged in as #{current_user.username}"
 			redirect '/prayers'
 		else
+
 			erb :"users/new"
 		end
 	end
@@ -32,7 +33,6 @@ class UserController < ApplicationController
 			flash.next[:greeting] = "Already logged in as #{current_user.username}"
 			redirect '/prayers'
 		else
-			flash.next[:error] = "Please log in"
 			erb :"users/login"
 		end
 	end

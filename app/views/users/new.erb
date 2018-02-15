@@ -2,24 +2,48 @@
   <h4 style="color:red;""><%= flash[:error] %></h4>
 <% end %>
 
-<h1>Create an Account</h1>
-<form method="post" action="/signup">
-	<div>
-	<input type="text" id="username" name="username" placeholder="Username:"/>
-	<br><br>
-	<input type="text" id="email" name="email" placeholder="Email:"/>
-	<br><br>
-	<input type="password" id="password" name="password" placeholder="Password:"/>
-	<br><br>
-	</div>
-	<div>
-	<h4>Optional:</h4>
-	<input type="text" id="name" name="name" placeholder="name:"/>
-	<br><br>
-	<input type="text" id="church" name="church" placeholder="Home Church:"/>
-	<br><br>
-	<input type="text" id="verse" name="verse" placeholder="Favorite Verse:"/>
-	</div>
-	<br><br>
-	<input type="submit" id="Sign Up" value="Sign Up"/>
+<form class="pure-form pure-form-aligned" method="post" action="/signup">
+	<h1>Create an Account</h1>
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="username">Username*</label>
+			<input type="text" id="username" name="username" placeholder="Username"/>
+			<span class="pure-form-message-inline">*Required</span>
+		</div>
+
+		<div class="pure-control-group">
+			<label for="email">Email*</label>
+			<input type="text" id="email" name="email" placeholder="Email"/>
+		</div>
+
+		<div class="pure-control-group">
+			<label for="password">Password*</label>
+			<input type="password" id="password" name="password" placeholder="Password:"/>
+		</div>
+	</fieldset>	
+
+	<fieldset>
+		<h4>Optional:</h4>
+		<div class="pure-control-group">
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name"/>
+		</div>
+
+		<div class="pure-control-group">
+			<label for="church">Home Church:</label>
+			<input type="text" id="church" name="church"/>
+		</div>
+
+		<div class="pure-control-group">
+			<label for="verse">Favorite Verse</label>
+			<input type="text" id="verse" name="verse"/>
+		</div>
+
+		<div class="pure-controls">
+			<button type="submit" class="pure-button pure-button-primary">Submit</button>
+		</div>
+<!-- 		<input type="submit" id="Sign Up" value="Sign Up"/> -->
+		
+	</fieldset>
+	
 </form>
