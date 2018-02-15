@@ -2,13 +2,33 @@
   <h4 style="color:red;"><%= flash[:error] %></h4>
 <% end %>
 
-<h1>Login to Account</h1>
-<form method="post" action="/login">
-	<div>
-	<input type="text" id="username" name="username" placeholder="Username:"/>
-	<br><br>
-	<input type="password" id="password" name="password" placeholder="Password:"/>
-	<br><br>
+<div class="columns">
+	<div class="column is-half is-offset-one-quarter">
+		<h1 class="title">Login to Account</h1>
+		<form method="post" action="/login">
+			<div class="field">
+				<p class="control has-icons-left has-icons-right">
+				    <input class="input" type="text" name="username" placeholder="Username:">
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-user"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+				<p class="control has-icons-left has-icons-right">
+					<input class ="input" type="password" name="password" placeholder="Password:"/>
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-lock"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+			    <p class="control">
+			    	<button class="button is-success">
+			      	Login
+			    	</button>
+			  	</p>
+			</div>
+		</form>
 	</div>
-	<input type="submit" id="Sign Up" value="Login"/>
-</form>
+</div>
