@@ -1,0 +1,13 @@
+<div class="columns">
+	<div class="column is-half is-offset-3">
+		<br>
+		<h3 class="title is-2">Delete your account?</h3>
+		<h5 class="subtitle is-5">You will lose all of your shared prayers, and all of the groups you lead will be deleted"</h5>
+		<form method="post" action="/users/<%=@user.id%>/delete">
+			<input type="hidden" id="hidden" name="_method" value="delete"/>
+			<input class="button is-danger" type="submit" value="Confirm"/>
+			<a class="button is-text" href="/users/<%=@user.id%>">Cancel</a>
+		</form>
+
+	</div>
+</div>

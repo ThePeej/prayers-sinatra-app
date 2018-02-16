@@ -99,6 +99,23 @@ class UserController < ApplicationController
 		end
 	end
 
+	get '/users/:id/delete' do
+		@user = User.find(params[:id])
+		if @user == current_user
+			erb :"users/delete"
+		else
+			flash.next[:error] = "You do not have permission to delete that account"
+			redirect "/prayers"
+		end
+	end
+
+	delete '/users/:id/delete' do
+		user = User.find(params[:id])
+		user.destroy
+		flash.next[:greeting] = "Account has been deleted"
+		redirect to '/prayers'
+	end
+	
 	get '/logout' do
 		if logged_in?
 			session.clear
