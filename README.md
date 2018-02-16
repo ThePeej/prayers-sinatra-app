@@ -25,4 +25,10 @@ Built using Ruby Sinatra, ActiveRecord, SQLite3, Bulma CSS framework
 
 ### Installation Instructions
 
-Fork/Clone this repo
+Fork/Clone this repo, and then navigate to the repo directory in your terminal.
+
+Then, run `bundle install` to install all gem dependencies.
+
+Run all rake migrations with `rake db:migrate`
+
+Finally, start up a server using `shotgun` and navigate to the provided url
