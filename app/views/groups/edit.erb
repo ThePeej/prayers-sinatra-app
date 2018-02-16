@@ -18,4 +18,5 @@
 	<input type="checkbox" id="private" name="private"<%='checked' if @group.private? %>>
 	<br><br>
 	<input type="submit" value="Edit Group"/>
+	<a class="button is-text" href="/groups/<%=@group.id%>">Cancel</a>
 </form>
