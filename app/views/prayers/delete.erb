@@ -1,10 +1,17 @@
-<h1><%=@prayer.overview %></h1>
-<p><%=@prayer.details %></p>
-<br><br>
-<h3>Are you sure you want to delete this prayer?</h3>
-<form method="post" action="/prayers/<%=@prayer.id%>/delete">
-	<input type="hidden" id="hidden" name="_method" value="delete"/>
-	<input type="submit" value="Confirm"/>
-</form>
-<br>
-<a href="/prayer/<%=@prayer.id%>">Cancel</a>
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<div class="box">
+			<h1 class="title is-4 is-spaced"><%= @prayer.overview %></h1>
+			<h4 class="subtitle is-6"><%=@prayer.details %></h4>
+		</div>
+			<div class="column is-offset-1">
+				<h3 class="title is-3">Delete this prayer?</h3>
+				<form method="post" action="/prayers/<%=@prayer.id%>/delete">
+					<input type="hidden" id="hidden" name="_method" value="delete"/>
+					<input class="button is-danger" type="submit" value="Confirm"/>
+					<a class="button is-text" href="/prayers/<%=@prayer.id%>">Cancel</a>
+				</form>
+			</div>
+		
+	</div>
+</div>
