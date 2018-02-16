@@ -1,16 +1,25 @@
 # Specifications for the Sinatra Assessment
 
 Specs:
-- [x] Use Sinatra to build the app
-- [x] Use ActiveRecord for storing information in a database
+- [x] Use Sinatra to build the app 
+		- Sinatra is used for the controllers to providing routing for the app
+- [x] Use ActiveRecord for storing information in a database 
+		- Users, Prayers, Groups, GroupPrayers, and UserGroups are all stored and interacted with through ActiveRecord 
 - [x] Include more than one model class (list of model class names e.g. User, Post, Category)
+		- Users, Prayers, Groups are the main classes used.
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Posts)
+		- User has many prayers. User has many groups.
 - [x] Include user accounts
+		- Users are able to create/modify/delete their accounts
 - [x] Ensure that users can't modify content created by other users
+		- Users can only modify/delete prayers and groups that they have created.
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+		- Prayers belong to users and can be interacted through all CRUD actions
 - [x] Include user input validations
+		- Users must have unique email and username in order to create an account
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+		- Sinatra Flash messages are used to display error messages when validation fails
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits

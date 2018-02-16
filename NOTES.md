@@ -1,13 +1,6 @@
 
 
-
-
 ----- TODO -----
-
-
-
-Style all of Groups pages
-
 
 
 Read Me
@@ -54,3 +47,4 @@ Prayers posted anonymously can still be deleted if user has account and is logge
 
 Style Account/User Show/ User Edit Page
 
+Style all of Groups pages
