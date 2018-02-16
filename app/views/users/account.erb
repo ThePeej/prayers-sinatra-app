@@ -1,15 +1,15 @@
 <div class="columns">
 	<div class="column is-8 is-offset-2">
 		<h1 class="title is-3 is-spaced">Account Info</h1>
-		<h4 class="subtitle is-6">Username: <%= @user.username %></h4>
-		<h4 class="subtitle is-6">Email: <%= @user.email %></h4>
+		<h4 class="subtitle is-6"><strong>Username:</strong> <%= @user.username %></h4>
+		<h4 class="subtitle is-6"><strong>Email:</strong> <%= @user.email %></h4>
 		<p>--------------------</p>
-		<h4 class="subtitle is-6">Full Name: <%=@user.name %></h4>
-		<h4 class="subtitle is-6">Home Church: <%=@user.church %></h4>
-		<h4 class="subtitle is-6">Favorite Verse: <%=@user.verse %></h4>
+		<h4 class="subtitle is-6"><strong>Full Name:</strong> <%=@user.name %></h4>
+		<h4 class="subtitle is-6"><strong>Home Church:</strong> <%=@user.church %></h4>
+		<h4 class="subtitle is-6"><strong>Favorite Verse:</strong> <%=@user.verse %></h4>
 		<br>
 
-		<p>--------------------</p>
+
 		<h2 class="title is-5">Prayer Groups:</h2>
 		<h4><%= "You have not joined any groups yet" if @user.groups.size == 0 %></h4>
 
@@ -17,8 +17,9 @@
 			<a class="button is-light" href="/groups/<%=group.id%>"><%=group.name%></a>
 		<% end %>
 
-		<br><br><br>
-
+		<br><br>
+		<p>--------------------</p>
+		<br>
 		<h2 class="title is-3">Prayers: </h2>
 		<% @user.prayers.sort.reverse.each do |prayer| %>
 			<a href="/prayers/<%=prayer.id%>">

@@ -1,24 +1,37 @@
-<h1><%= @user.username %></h1>
-<p>--------------------</p>
-<h4>Full Name: <%=@user.name %></h4>
-<h4>Home Church: <%=@user.church %></h4>
-<h4>Favorite Verse: <%=@user.verse %></h4>
-<br><br>
-<h2>Prayer Groups:</h2>
-<h4><%= "You have not joined any groups yet" if @user.groups.size == 0 %></h4>
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<h1 class="title is-2 is-spaced"><%= @user.username %></h1>
+		<h4 class="subtitle is-6"><strong>Full Name:</strong> <%=@user.name %></h4>
+		<h4 class="subtitle is-6"><strong>Home Church:</strong> <%=@user.church %></h4>
+		<h4 class="subtitle is-6"><strong>Favorite Verse:</strong> <%=@user.verse %></h4>
+		<br>
+		<h2 class="title is-5">Public Prayer Groups:</h2>
+		<h4><%= "You have not joined any groups yet" if @user.groups.size == 0 %></h4>
+		<%@user.groups.find_all{|group|!group.private?}.each do |group| %>
+			<a class="button is-light" href="/groups/<%=group.id%>"><%=group.name%></a>
+		<% end %>
 
+		<br><br>
+		<p>--------------------</p>
+		<br>
 
-<ul>
-	<%@user.groups.each do |group| %>
-		<a href="/groups/<%=group.id%>"><li><%=group.name%> - <%=group.leader.name%></li></a>
-	<% end %>
-</ul>
-<br><br>
-
-<h2>Public Prayers: </h2>
-<% @user.prayers.find_all{|prayer|prayer.public?}.sort.each do |prayer| %>
-	<% if !prayer.anonymous? %>
-		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.overview%></li></a>
-	<% end %>
-<% end %>
-<br><br>
+		<h2 class="title is-3">Prayers: </h2>
+		<% @user.prayers.find_all{|prayer|prayer.public?}.sort.each do |prayer| %>
+			<a href="/prayers/<%=prayer.id%>">
+				<article class="message">
+						<div class="message-header">
+					  	<% if prayer.anonymous? %>
+							<p>Posted as Anonymous</p>
+						<% else %>
+							<p>Posted as <%=prayer.author.name%></p>
+						<% end %>
+					</div>
+					<div class="message-body">
+							<%=prayer.overview%><br>
+					</div>
+				</article>
+			</a>
+			<br>
+		<% end %>
+	</div>
+</div>
