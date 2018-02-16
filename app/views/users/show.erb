@@ -15,19 +15,16 @@
 		<p>--------------------</p>
 		<br>
 
-		<h2 class="title is-3">Prayers: </h2>
-		<% @user.prayers.find_all{|prayer|prayer.public?}.sort.each do |prayer| %>
+		<h2 class="title is-3">Public Prayers: </h2>
+		<% @user.prayers.find_all{|prayer|prayer.public? && !prayer.anonymous?}.sort.reverse.each do |prayer| %>
 			<a href="/prayers/<%=prayer.id%>">
 				<article class="message">
-						<div class="message-header">
-					  	<% if prayer.anonymous? %>
-							<p>Posted as Anonymous</p>
-						<% else %>
-							<p>Posted as <%=prayer.author.name%></p>
-						<% end %>
+					<div class="message-header">
+						<em><%= prayer.overview %></em>
+						<%= prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%>
 					</div>
 					<div class="message-body">
-							<%=prayer.overview%><br>
+						<%=prayer.details%>
 					</div>
 				</article>
 			</a>

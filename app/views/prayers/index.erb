@@ -27,6 +27,7 @@
 								<% end %>
 								<em><%=prayer.overview%></em>
 							</p>
+								<%= prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%>
 						</div>
 						<div class="message-body">
 							<%=prayer.details%>	

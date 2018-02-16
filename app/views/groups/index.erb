@@ -12,16 +12,18 @@
 		<h1 class="title is-2">Public Groups:</h1>
 
 		<% @groups.each do |group| %>
-			<article class="message">
-				<div class="message-header">
-					<%=group.name%>
-				</div>
-				<div class="message-body">
-					<strong>Lead by: <%=group.leader.name%></strong>
-					<br>
-					<%=group.description%>
-				</div>
-			</article>
+			<a href="/groups/<%=group.id%>">
+				<article class="message is-warning">
+					<div class="message-header">
+						<%=group.name%>
+					</div>
+					<div class="message-body">
+						<strong>Lead by <%=group.leader.username%></strong>
+						<br>
+						<%=group.description%>
+					</div>
+				</article>
+			</a>
 		<% end %>
 	</div>
 </div>
