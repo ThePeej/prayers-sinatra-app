@@ -4,17 +4,20 @@
   	</div>
 <% end %>
 
-<h1>Create a Prayer Group</h1>
-<form method="post" action="/groups">
-	<div>
-	<label for="name">Group Name: </label>	
-	<input type="text" id="name" name="name" placeholder="Group name:"/>
-	<br><br>
-	<label for="description">Group Description: </label>
-	<input type="text" id="description" name="description" placeholder="Group description:"/>
-	<br><br>
-	<label for="private">Is this a private group? </label>
-	<input type="checkbox" id="private" name="private" checked>
-	<br><br>
-	<input type="submit" value="Create Group"/>
-</form>
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<h1 class="title is-2">New Prayer Group</h1>
+		<form method="post" action="/groups">
+			<label for="prayer_overview" class="subtitle is-5">Group Name:</label>
+			<input class="input" type="text" id="name" name="name"/>
+			<br><br>
+			<label for="description" class="subtitle is-5">Description: </label>
+			<textarea class="textarea" type="text" id="description" name="description"/></textarea>
+			<label class="checkbox" for="private">Is this a private group? </label>
+			<input type="checkbox" id="private" name="private" checked>
+			<br><br>
+			<input class="button is-info" type="submit" value="Create Group"/>
+			<a class="button is-text" href="/groups">Cancel</a>
+		</form>
+	</div>
+</div>

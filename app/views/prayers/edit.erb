@@ -10,9 +10,9 @@
 		<form method="post" action="/prayers/<%=@prayer.id%>">
 			<input type="hidden" id="hidden" name="_method" value="patch"/>
 			<label for="prayer_overview" class="subtitle is-5">What would you like others to pray about?</label>
-			<input class="input" type="text" id="prayer_overview" name="overview" size=60 value="<%=@prayer.overview%>"/>
+			<input class="input" type="text" id="prayer_overview" name="overview" value="<%=@prayer.overview%>"/>
 			<br><br>
-			<textarea class="textarea" type="text" id="prayer_details" name="details" size=60/><%=@prayer.details%></textarea>
+			<textarea class="textarea" type="text" id="prayer_details" name="details"/><%=@prayer.details%></textarea>
 			<label for="anonymous_prayer">Post prayer anonymously? </label>
 			<input type="checkbox" id="anonymous_prayer" name="anonymous" <%="checked" if @prayer.anonymous? %>/>
 			<label for="public_prayer">Is this a public prayer? </label>
