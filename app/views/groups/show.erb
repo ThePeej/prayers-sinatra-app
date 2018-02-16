@@ -11,65 +11,79 @@
   	</div>
 <% end %>
 
-<h1><%=@group.name%></h1>
-<h3>Leader: </h3>
-<%=@group.leader.username %>
-<br>
-<h3>Description:</h3>
-<p><%=@group.description%></p>
-<br>
-<br>
 
 
+<div class="columns">
+	<div class="column is-8 is-offset-2">
 
-<h3>Members: </h3>
-<ul>
-	<% @group.members.each do |user| %>
-		<a href="/users/<%=user.id%>"><li><%=user.username%></li></a>
-	<% end %>
-</ul>
+		<h1 class="title is-2 is-spaced"><%=@group.name%></h1>
+		<h3 class="subtitle is-5"><%=@group.description%></h3>
 
-<% if @group.leader == current_user %>
-	<form method="post" action="/groups/<%=@group.id%>/add_member">
-		<label for="add_member">Add Member By Name, Email, or Username:</label>
 		<br>
-		<input type="text" id="add_member" name="add_member"/>
-		<input type="submit" value="Add Member"/>
-	</form>
-<% end %>
 
-<br><br>
+		<p>--------------------</p>
+		<h3 class="title is-4">Members: </h3>
+		<ul>
+			<% @group.members.each do |user| %>
+				<a href="/users/<%=user.id%>"><li><%=user.username%><%=" (leader)" if user == @group.leader%></li></a>
+			<% end %>
+		</ul>
+		<br>
+		<% if @group.leader == current_user %>
+		
+			<form method="post" action="/groups/<%=@group.id%>/add_member">
+				<label class="label" for="add_member">Add Member By Name, Email, or Username:</label>
+				<div class="field has-addons">
+					
+					<div class="control">
+						<input class="input" type="text" id="add_member" name="add_member"/>	
+					</div>
+					<div class="control">
+						<input class="button is-dark" type="submit" value="Add"/>
+					</div>
+				</div>
+			</form>
+			
+		<% end %>
 
-<h3>Group Prayers: </h3>
-<% @group.prayers.sort.each do |prayer| %>
-	<% if prayer.anonymous? %>
-		<a href="/prayers/<%=prayer.id%>"><li>Anonymous: <%=prayer.overview%></li></a>
-	<% else %>
-		<a href="/prayers/<%=prayer.id%>"><li><%=prayer.author.username%>: <%=prayer.overview%></li></a>
-	<% end %>
-<% end %>
-<br><br>
+		<br><br>
 
+		<p>--------------------</p>
+		<h3 class="title is-4">Group Prayers:</h3>
+		<% @group.prayers.sort.reverse.each do |prayer| %>
+			<a href="/prayers/<%=prayer.id%>">
+				<article class="message">
+					<div class="message-header">
+						<p>
+							<strong><%= "Anonymous" if prayer.anonymous? %><%=prayer.author.username if !prayer.anonymous?%></strong>
+							<em> - <%= prayer.overview %></em>
+						</p>
+						<%= prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%>
+					</div>
+					<div class="message-body">
+						<%=prayer.details%>
+					</div>
+				</article>
+			</a>
+			<br>
+		<% end %>
 
+		<!-- Group administrative buttons -->
 
-<!-- Group administrative buttons -->
+		<% if !@group.private? && !@group.members.include?(current_user) %>
+		    <a href="/groups/<%=@group.id%>/join">Join Group</a>
+		<% end %>
 
-<% if !@group.private? && !@group.members.include?(current_user) %>
-    <a href="/groups/<%=@group.id%>/join">Join Group</a>
-<% end %>
+		<% if @group.leader != current_user && @group.members.include?(current_user) %>
+		    <a href="/groups/<%=@group.id%>/leave">Leave Group</a>
+		<% end %>
 
-<% if @group.leader != current_user && @group.members.include?(current_user) %>
-    <a href="/groups/<%=@group.id%>/leave">Leave Group</a>
-<% end %>
+		<br><br>
 
-<br><br>
+		<% if @group.leader == current_user %>
+		    <a class="button is-info" href="/groups/<%=@group.id%>/edit">Edit Group</a>
+		    <a class="button is-danger" href="/groups/<%=@group.id%>/delete">Delete Group</a>
+		<% end %>
 
-<% if @group.leader == current_user %>
-    <a href="/groups/<%=@group.id%>/edit">Edit Group</a>
-<% end %>
-
-<br>
-
-<% if @group.leader == current_user %>
-    <a href="/groups/<%=@group.id%>/delete">Delete Group</a>
-<% end %>
+	</div>
+</div>
