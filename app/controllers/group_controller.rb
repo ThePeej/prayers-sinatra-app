@@ -30,18 +30,26 @@ class GroupController <ApplicationController
 
 	get '/groups/:id' do
 		@group = Group.find(params[:id])
+		if !logged_in?
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
 		if @group.private? == false
 			erb :"groups/show"
 		elsif @group.private? == true && @group.members.any?{|member| member.id == current_user.id}
 			erb :"groups/show"
 		else
-			flash.next[:greeting] = "You do not have access to view that group"
+			flash.next[:error] = "You do not have access to view that group"
 			redirect '/groups'
 		end
 	end
 
 	get '/groups/:id/edit' do
 		@group = Group.find(params[:id])
+		if !logged_in?
+			flash.next[:error] = "Please log in"
+			redirect "/login"
+		end
 		if @group.leader = current_user
 			erb :"groups/edit"
 		else
@@ -63,11 +71,18 @@ class GroupController <ApplicationController
 
 	get '/groups/:id/join' do
 		@group = Group.find(params[:id])
-		if logged_in?
-			erb :"groups/join"
-		else
+		if !logged_in?
 			flash.next[:error] = "Please log in"
 			redirect "/login"
+		end
+		if @group.members.include?(current_user)
+			flash.next[:error] = "You are already part of this group"
+			redirect "/groups/#{@group.id}"
+		elsif @group.private?
+			flash.next[:error] = "You do not have permission to join that private group"
+			redirect "/groups"
+		else
+			erb :"/groups/join"
 		end
 	end
 
@@ -81,11 +96,23 @@ class GroupController <ApplicationController
 
 	get '/groups/:id/leave' do
 		@group = Group.find(params[:id])
-		if logged_in?
-			erb :"groups/leave"
-		else
+		if !logged_in?
 			flash.next[:error] = "Please log in"
 			redirect "/login"
+		end
+		if @group.leader ==current_user
+			flash.next[:error] = "You cannot leave a group you lead"
+			redirect "/groups/#{@group.id}"
+		elsif !@group.members.include?(current_user)
+			if !@group.private?
+				flash.next[:error] = "You are not part of this group"
+				redirect "/groups/#{@group.id}"
+			else
+				flash.next[:error] = "You are not part of that private group"
+				redirect "/groups"
+			end
+		else
+			erb :"groups/leave"
 		end
 	end
 

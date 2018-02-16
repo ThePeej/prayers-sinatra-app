@@ -6,13 +6,13 @@
 
 <div class="columns">
 	<div class="column is-8 is-offset-2">
-		<h1 class="title is-2">New Prayer Group</h1>
+		<h1 class="title is-2">Create New Prayer Group</h1>
 		<form method="post" action="/groups">
 			<label for="prayer_overview" class="subtitle is-5">Group Name:</label>
-			<input class="input" type="text" id="name" name="name"/>
+			<input class="input" type="text" id="name" name="name" placeholder="*required" />
 			<br><br>
-			<label for="description" class="subtitle is-5">Description: </label>
-			<textarea class="textarea" type="text" id="description" name="description"/></textarea>
+			<label for="description" class="subtitle is-5">Description:</label>
+			<textarea class="textarea" type="text" id="description" name="description" placeholder="(optional)" /></textarea>
 			<label class="checkbox" for="private">Is this a private group? </label>
 			<input type="checkbox" id="private" name="private" checked>
 			<br><br>

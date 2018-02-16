@@ -1,6 +1,10 @@
-<h1>You are trying to leave <%=@group.name%></h1>
-<form method="post" action="/groups/<%=@group.id%>/leave">
-	<input type="submit" value="Confirm"/>
-</form>
-<br>
-<a href="/group/<%=@group.id%>">Cancel</a>
+<div class="columns">
+	<div class="column is-half is-offset-3">
+		<br>
+		<h3 class="title is-2">Leave <%=@group.name%>?</h3>
+		<form method="post" action="/groups/<%=@group.id%>/leave">
+			<input class="button is-danger" type="submit" value="Confirm"/>
+			<a class="button is-text" href="/groups/<%=@group.id%>">Cancel</a>
+		</form>
+	</div>
+</div>
