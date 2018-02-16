@@ -10,7 +10,7 @@
 			<% elsif @prayer.author == current_user%>
 				<p class="subtitle is-6">You posted this
 			<% else %>
-				<p class="subtitle is-6">Posted by <%=@prayer.author.username%>
+				<p class="subtitle is-6">Posted by <a href="/users/<%=@prayer.author.id%>"><%=@prayer.author.username%></a>
 			<% end %>
 
 			on <%= @prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%></p>

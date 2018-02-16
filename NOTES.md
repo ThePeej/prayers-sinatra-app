@@ -4,9 +4,11 @@
 
 ----- TODO -----
 
-Style Account Page
+Style Account/edit Page
 
 Style all of Groups pages
+
+
 
 Read Me
 
@@ -19,9 +21,10 @@ Read Me
 
 ---- OPTIONAL ----
 
-Improve Visuals? Potentially just slap on a bootstrap or other css framework default and modify slightly???
-
-
+Add comments (comments belong to prayer/vice versa.... comments also belong to users/vice verse???)
+	- New page would be prayer show page
+	- Edit page would be....separate edit page that has prayer overview and details, then a text box containing comment to be edited
+	- Delete
 
 
 ----- DONE -----
