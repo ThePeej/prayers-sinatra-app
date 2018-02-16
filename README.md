@@ -1,12 +1,12 @@
 # Prayers
-
-## A Sinatra Portfolio Project for Flatiron School
+#### A Sinatra Portfolio Project for Flatiron School
+---
 
 The project is a simple CRUD app that allows a user to create, read, update, and destroy prayers posted on the app. This project is built with the intent to eventually deploy a fully functioning social website.
 
 ### Functionality Overview:
-	- User will have many groups, and many prayers.
-		- User can sign up for, log into, edit, and delete his or her account.
+	*User will have many groups, and many prayers.
+		..* User can sign up for, log into, edit, and delete his or her account.
 		- User can create, edit, and delete groups.
 		- User can create, edit, and delete prayers
 	- Groups will have one leader, many members, many prayers through members.
