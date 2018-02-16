@@ -3,14 +3,26 @@
   		<h4><%= flash[:error] %></h4>
   	</div>
 <% end %>
-<a href="/groups/new">Create New Group</a>
+
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<a class="button is-info is-rounded" style="float:right;" href="/groups/new">Create New Group</a>
 
 
-<h1>Public Groups:</h1>
+		<h1 class="title is-2">Public Groups:</h1>
 
-<ul>
-	<% @groups.each do |group| %>
-		<a href="/groups/<%=group.id%>"><li><%=group.name%> - <%=group.leader.name%></li></a>
-	<% end %>
-</ul>
+		<% @groups.each do |group| %>
+			<article class="message">
+				<div class="message-header">
+					<%=group.name%>
+				</div>
+				<div class="message-body">
+					<strong>Lead by: <%=group.leader.name%></strong>
+					<br>
+					<%=group.description%>
+				</div>
+			</article>
+		<% end %>
+	</div>
+</div>
 

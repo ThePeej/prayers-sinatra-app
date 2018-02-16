@@ -4,7 +4,7 @@
 
 ----- TODO -----
 
-Style Account/User Show/ User Edit Page
+
 
 Style all of Groups pages
 
@@ -51,4 +51,6 @@ Add user show page
 Prayers should also have creator who can delete prayer
 
 Prayers posted anonymously can still be deleted if user has account and is logged in prior to posting
+
+Style Account/User Show/ User Edit Page
 
