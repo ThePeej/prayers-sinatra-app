@@ -34,7 +34,7 @@ class PrayerController < ApplicationController
 		if !logged_in?
 			flash.next[:error] = "Please log in"
 			redirect "/login"
-		elsif @prayer.public? || @prayer.author == current_user
+		elsif @prayer.public? || @prayer.author == current_user || !(@prayer.groups & current_user.groups)
 			erb :"prayers/show"
 		else
 			flash.next[:error] = "You do not have access to view that prayer"
