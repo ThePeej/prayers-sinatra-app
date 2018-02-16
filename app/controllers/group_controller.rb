@@ -30,6 +30,11 @@ class GroupController <ApplicationController
 
 	get '/groups/:id' do
 		@group = Group.find(params[:id])
+		if @group.members.include?(current_user)
+			@prayers = @group.prayers.sort.reverse
+		else
+			@prayers = @group.prayers.find_all{|prayer|prayer.public?}.sort.reverse
+		end
 		if !logged_in?
 			flash.next[:error] = "Please log in"
 			redirect "/login"

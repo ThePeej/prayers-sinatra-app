@@ -50,7 +50,8 @@
 
 		<p>--------------------</p>
 		<h3 class="title is-4">Group Prayers:</h3>
-		<% @group.prayers.sort.reverse.each do |prayer| %>
+
+		<% @prayers.each do |prayer| %>
 			<a href="/prayers/<%=prayer.id%>">
 				<article class="message">
 					<div class="message-header">
