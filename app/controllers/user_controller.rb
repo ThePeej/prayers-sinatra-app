@@ -75,13 +75,21 @@ class UserController < ApplicationController
 		end
 	end
 
-	patch '/users/:id/edit' do
-		user = User.find(params[:id])
+	patch '/users/:id' do
+		user = User.find(params[:id]) 
 		# requires unique email for all users
-		if User.all.any?{|user|user.email.downcase == params["email"].downcase||user.username.downcase == params["username"].downcase}
-			flash.next[:error] = "Username or email is already associated with an account"
+		if user.email != params["email"] && User.all.any?{|user|user.email.downcase == params["email"].downcase}
+
+			flash.next[:error] = "Email is already associated with an account"
+			redirect "/users/#{user.id}/edit"
+
+		elsif user.username != params["username"] && User.all.any?{|user|user.username.downcase == params["username"].downcase}
+
+			flash.next[:error] = "Username is already associated with an account"
+			redirect "/users/#{user.id}/edit"
+
 		else
-			if user.update(params)
+			if user.update(:username => params["username"], :email => params["email"], :password => params["password"], :name => params["name"], :church => params["church"], :verse => params["verse"])
 				flash.next[:message] = "Account successfully edited!"
 				redirect "/account"
 			else

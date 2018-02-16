@@ -1,8 +1,14 @@
+<% if !!flash[:error] %>
+	<div class="notification is-danger">
+  		<h4><%= flash[:error] %></h4>
+  	</div>
+<% end %>
+
 <div class="columns">
 	<div class="column is-one-third is-offset-one-third">
 		<h1 class="title">Edit Account</h1>
 		<p class="subtitle">*required</p>
-		<form method="post" action="/users/<%@user.id%>">
+		<form method="post" action="/users/<%=@user.id%>">
 			<input type="hidden" id="hidden" name="_method" value="patch">
 			<div class="field">
 				<label class="label" for="username" >Username*</label>
@@ -51,13 +57,8 @@
 					<textarea class="textarea" type="text" id="verse" name="verse"/><%= @user.verse %></textarea>
 				</p>
 			</div>
-			<div class="field">
-			    <p class="control">
-			    	<button class="button is-success">
-			      	Save
-			    	</button>
-			  	</p>
-			</div>
+			<input class="button is-success" type="submit" value="Save"/>
+			<a class="button is-text" href="/account">Cancel</a>
 		</form>
 	</div>
 </div>
