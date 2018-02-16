@@ -1,43 +1,59 @@
-<h2><%= @prayer.overview %></h2>
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<div class="content">
+			<h1 class="title is-3"><%= @prayer.overview %></h1>
 
-<h3><%= "Description:" if !!@prayer.description %></h3>
-<p><%= @prayer.description %></p>
+			
+			<% if @prayer.anonymous? && @prayer.author == current_user%>
+				<p class="subtitle is-6">You posted this anonymously 
+			<% elsif @prayer.anonymous? %>
+				<p class="subtitle is-6">Posted by: Anonymous</p>
+			<% elsif @prayer.author == current_user%>
+				<p class="subtitle is-6">You posted this
+			<% else %>
+				<p class="subtitle is-6">Posted by: <%=@prayer.author.username %>
+			<% end %>
 
-<br><br>
+			on <%= @prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%></p>
 
-<% if @prayer.anonymous? && @prayer.author == current_user%>
-	<h4>(You posted this anonymously)</h4>
-<% elsif @prayer.anonymous? %>
-	<h4>Posted by: Anonymous</h4>
-<% elsif @prayer.author == current_user%>
-	<h4>You posted this</h4>
-<% else %>
-	<h4>Posted by: <%=@prayer.author.username %></h4>
-<% end %>
+			<br>
 
-<h4>on <%= @prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%></h4>
+			
+			<article class="message">
+				<div class="message-header">
+			    	<p><%= "Details:" if !!@prayer.description %></p>
+			  	</div>
+			  	<div class="message-body">
+			    	<%= @prayer.description %>
+			  	</div>
+				</article>
+			
 
-<br>
+			<br>
 
-<h4>Posted in:</h4>
-<ul>
-<%if @prayer.public? %>
-<a href="/prayers"><li>To Public</li></a>
-<% end %>
+			<p>Posted in:</p>
+			<ul>
+			<%if @prayer.public? %>
+			<a href="/prayers"><li>To Public</li></a>
+			<% end %>
 
-<% @prayer.groups.each do |group| %>
-	<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
-<% end %>
-</ul>
+			<% @prayer.groups.each do |group| %>
+				<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
+			<% end %>
+			</ul>
 
+			<br><br>
 
+			<% if @prayer.author == current_user %>
+			    <a href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
+			<% end %>
 
-<% if @prayer.author == current_user %>
-    <a href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
-<% end %>
+			<br>
 
-<br>
+			<% if @prayer.author == current_user %>
+			    <a href="/prayers/<%=@prayer.id%>/delete">Delete Prayer</a>
+			<% end %>
+		</div>
 
-<% if @prayer.author == current_user %>
-    <a href="/prayers/<%=@prayer.id%>/delete">Delete Prayer</a>
-<% end %>
+	</div>
+</div>
