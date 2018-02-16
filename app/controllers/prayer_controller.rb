@@ -1,7 +1,7 @@
 class PrayerController < ApplicationController
 
 	get '/prayers' do 
-		@prayers = Prayer.all.find_all{|prayer| prayer.public?}
+		@prayers = Prayer.all.find_all{|prayer| prayer.public?}.sort.reverse
 		erb :"prayers/index"
 	end
 

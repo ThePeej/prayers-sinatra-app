@@ -111,11 +111,14 @@ class UserController < ApplicationController
 
 	delete '/users/:id/delete' do
 		user = User.find(params[:id])
+		user.prayers.destroy_all
+		user.lead_groups.destroy_all
 		user.destroy
+		session.clear
 		flash.next[:greeting] = "Account has been deleted"
 		redirect to '/prayers'
 	end
-	
+
 	get '/logout' do
 		if logged_in?
 			session.clear
