@@ -3,7 +3,6 @@
 		<div class="content">
 			<h1 class="title is-3"><%= @prayer.overview %></h1>
 
-			
 			<% if @prayer.anonymous? && @prayer.author == current_user%>
 				<p class="subtitle is-6">You posted this anonymously 
 			<% elsif @prayer.anonymous? %>
@@ -16,9 +15,9 @@
 
 			on <%= @prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%></p>
 
+
 			<br>
 
-			
 			<article class="message">
 				<div class="message-header">
 			    	<p><%= "Details:" if !!@prayer.details %></p>
@@ -26,12 +25,9 @@
 			  	<div class="message-body">
 			    	<%= @prayer.details %>
 			  	</div>
-				</article>
-			
+			</article>
 
-			<br>
-
-			<h4>Posted in:</h4>
+			<h5>Posted in:</h5>
 			<ul>
 			<%if @prayer.public? %>
 			<a href="/prayers"><li>Public</li></a>
@@ -42,17 +38,16 @@
 			<% end %>
 			</ul>
 
-			<br><br>
-
-			<% if @prayer.author == current_user %>
-			    <a href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
-			<% end %>
-
 			<br>
 
-			<% if @prayer.author == current_user %>
-			    <a href="/prayers/<%=@prayer.id%>/delete">Delete Prayer</a>
-			<% end %>
+			<div class="control">
+				<% if @prayer.author == current_user %>
+				    <a class="button is-info" href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
+				    <a class="button is-danger" href="/prayers/<%=@prayer.id%>/delete">Delete</a>
+				<% end %>
+			</div>
+
+			<br>
 		</div>
 
 	</div>
