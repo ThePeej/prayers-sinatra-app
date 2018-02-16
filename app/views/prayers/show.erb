@@ -21,20 +21,20 @@
 			
 			<article class="message">
 				<div class="message-header">
-			    	<p><%= "Details:" if !!@prayer.description %></p>
+			    	<p><%= "Details:" if !!@prayer.details %></p>
 			  	</div>
 			  	<div class="message-body">
-			    	<%= @prayer.description %>
+			    	<%= @prayer.details %>
 			  	</div>
 				</article>
 			
 
 			<br>
 
-			<p>Posted in:</p>
+			<h4>Posted in:</h4>
 			<ul>
 			<%if @prayer.public? %>
-			<a href="/prayers"><li>To Public</li></a>
+			<a href="/prayers"><li>Public</li></a>
 			<% end %>
 
 			<% @prayer.groups.each do |group| %>

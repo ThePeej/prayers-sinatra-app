@@ -10,7 +10,7 @@
 	<h4><label for="prayer_overview">What would you like others to pray about?</label></h4>
 	<input type="text" id="prayer_overview" name="overview" size=60 value="<%=@prayer.overview%>"/>
 	<br><br>
-	<input type="text" id="prayer_description" name="description" size=60 value="<%=@prayer.description%>"/>
+	<input type="text" id="prayer_details" name="details" size=60 value="<%=@prayer.details%>"/>
 	<br><br>
 	<label for="anonymous_prayer">Post prayer anonymously? </label>
 	<input type="checkbox" id="anonymous_prayer" name="anonymous" <%="checked" if @prayer.anonymous? %>/>

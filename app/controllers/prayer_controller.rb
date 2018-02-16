@@ -15,7 +15,7 @@ class PrayerController < ApplicationController
 	end
 
 	post '/prayers' do
-		prayer = Prayer.new(:overview => params["overview"],:description => params["description"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
+		prayer = Prayer.new(:overview => params["overview"],:details => params["details"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
 		prayer.author = current_user
 
 		if prayer.save
@@ -55,7 +55,7 @@ class PrayerController < ApplicationController
 	patch '/prayers/:id' do
 		prayer = Prayer.find(params[:id])
 		
-		if prayer.update(:overview => params["overview"],:description => params["description"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
+		if prayer.update(:overview => params["overview"],:details => params["details"], :public? => !!params["public"], :anonymous? => !!params["anonymous"])
 			current_user.groups.each do |group|
 				if group.prayers.include?(prayer)
 					group.prayers.delete(prayer)
