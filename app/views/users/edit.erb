@@ -1,28 +1,63 @@
-<% if !!flash[:error] %>
-	<div class="notification is-danger">
-  		<h4><%= flash[:error] %></h4>
-  	</div>
-<% end %>
-
-<h1>Create an Account</h1>
-<form method="post" action="/users/<%@user.id%>">
-	<input type="hidden" id="hidden" name="_method" value="patch"
-	<div>
-	<input type="text" id="username" name="username" placeholder="Username:" value="<%= @user.username %>"/>
-	<br><br>
-	<input type="text" id="email" name="email" placeholder="Email:" value="<%= @user.email %>"/>
-	<br><br>
-	<input type="password" id="password" name="password" placeholder="Password:" value="<%= @user.password %>"/>
-	<br><br>
+<div class="columns">
+	<div class="column is-one-third is-offset-one-third">
+		<h1 class="title">Edit Account</h1>
+		<p class="subtitle">*required</p>
+		<form method="post" action="/users/<%@user.id%>">
+			<input type="hidden" id="hidden" name="_method" value="patch">
+			<div class="field">
+				<label class="label" for="username" >Username*</label>
+				<p class="control has-icons-left">
+				    <input class="input" id="username" type="text" name="username" value="<%= @user.username %>"/>
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-user"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label for="email" ">Email*</label>
+				<p class="control has-icons-left">
+				    <input class="input" id="email" type="email" id="email" name="email" value="<%= @user.email %>"/>
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-envelope"></i>
+			    	</span>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label" for="password" >Password*</label>
+				<p class="control has-icons-left">
+					<input class ="input" id="password" type="password" name="password" value="<%= @user.password %>"/>
+			    	<span class="icon is-small is-left">
+			        	<i class="fas fa-lock"></i>
+			    	</span>
+				</p>
+			</div>
+			<br>
+			<div class="field">
+				<p class="help">Optional:</p>
+				<label class="label" for="name">Name</label>
+				<p class="control">
+				    <input class="input" type="text" id="name" name="name" value="<%= @user.name %>"/>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label" for="church">Home Church</label>
+				<p class="control">
+				    <input class="input" type="text" id="church" name="church" value="<%= @user.church %>"/>
+				</p>
+			</div>
+			<div class="field">
+				<label class="label" for="verse">Favorite Verse</label>
+				<p class="control">
+					<textarea class="textarea" type="text" id="verse" name="verse"/><%= @user.verse %></textarea>
+				</p>
+			</div>
+			<div class="field">
+			    <p class="control">
+			    	<button class="button is-success">
+			      	Save
+			    	</button>
+			  	</p>
+			</div>
+		</form>
 	</div>
-	<div>
-	<h4>Optional:</h4>
-	<input type="text" id="name" name="name" placeholder="name:" value="<%= @user.name %>"/>
-	<br><br>
-	<input type="text" id="church" name="church" placeholder="Home Church:" value="<%= @user.church %>"/>
-	<br><br>
-	<input type="text" id="verse" name="verse" placeholder="Favorite Verse:" value="<%= @user.verse %>"/>
-	</div>
-	<br><br>
-	<input type="submit" id="Sign Up" value="Sign Up"/>
-</form>
+</div>

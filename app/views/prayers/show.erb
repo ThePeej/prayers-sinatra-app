@@ -17,7 +17,6 @@
 
 
 			<br>
-
 			<article class="message is-dark">
 			  	<div class="message-body">
 			    	<%= @prayer.details %>
@@ -26,7 +25,7 @@
 
 
 			<% if @prayer.author == current_user %>
-				<h5>Posted in:</h5>
+				<h5>Shared in:</h5>
 				<ul>
 					<%if @prayer.public? %>
 						<a href="/prayers"><li>[Public]</li></a>

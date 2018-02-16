@@ -4,7 +4,7 @@
 
 ----- TODO -----
 
-Style Account/edit Page
+Style Account/User Show/ User Edit Page
 
 Style all of Groups pages
 
