@@ -25,18 +25,18 @@
 
 
 			<% if @prayer.author == current_user %>
-				<h5>Shared in:</h5>
-				<ul>
-					<%if @prayer.public? %>
-						<a href="/prayers"><li>[Public]</li></a>
-					<% end %>
+				<h5>You shared this in:</h5>
+				
+				<%if @prayer.public? %>
+					<a href="/prayers">[Public]</a>
+					<br>
+				<% end %>
 
-					<% @prayer.groups.each do |group| %>
-						<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
-					<% end %>
-				</ul>
+				<% @prayer.groups.each do |group| %>
+					<a class="button is-light" href="/groups/<%=group.id%>"><%=group.name%></a>
+				<% end %>
 
-				<br>
+				<br><br>
 
 				<div class="control">
 					    <a class="button is-info" href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
