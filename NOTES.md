@@ -4,6 +4,9 @@
 
 ----- TODO -----
 
+Style Account Page
+
+Style all of Groups pages
 
 Read Me
 

@@ -6,11 +6,11 @@
 			<% if @prayer.anonymous? && @prayer.author == current_user%>
 				<p class="subtitle is-6">You posted this anonymously 
 			<% elsif @prayer.anonymous? %>
-				<p class="subtitle is-6">Posted by: Anonymous</p>
+				<p class="subtitle is-6">Posted by Anonymous
 			<% elsif @prayer.author == current_user%>
 				<p class="subtitle is-6">You posted this
 			<% else %>
-				<p class="subtitle is-6">Posted by: <%=@prayer.author.username %>
+				<p class="subtitle is-6">Posted by <%=@prayer.author.username%>
 			<% end %>
 
 			on <%= @prayer.created_at.strftime("%m/%d/%y at %I:%M%p %Z")%></p>
@@ -18,34 +18,32 @@
 
 			<br>
 
-			<article class="message">
-				<div class="message-header">
-			    	<p><%= "Details:" if !!@prayer.details %></p>
-			  	</div>
+			<article class="message is-dark">
 			  	<div class="message-body">
 			    	<%= @prayer.details %>
 			  	</div>
 			</article>
 
-			<h5>Posted in:</h5>
-			<ul>
-			<%if @prayer.public? %>
-			<a href="/prayers"><li>Public</li></a>
+
+			<% if @prayer.author == current_user %>
+				<h5>Posted in:</h5>
+				<ul>
+					<%if @prayer.public? %>
+						<a href="/prayers"><li>[Public]</li></a>
+					<% end %>
+
+					<% @prayer.groups.each do |group| %>
+						<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
+					<% end %>
+				</ul>
+
+				<br>
+
+				<div class="control">
+					    <a class="button is-info" href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
+					    <a class="button is-danger" href="/prayers/<%=@prayer.id%>/delete">Delete</a>
+				</div>
 			<% end %>
-
-			<% @prayer.groups.each do |group| %>
-				<a href="/groups/<%=group.id%>"><li><%=group.name%></li></a>
-			<% end %>
-			</ul>
-
-			<br>
-
-			<div class="control">
-				<% if @prayer.author == current_user %>
-				    <a class="button is-info" href="/prayers/<%=@prayer.id%>/edit">Edit Prayer</a>
-				    <a class="button is-danger" href="/prayers/<%=@prayer.id%>/delete">Delete</a>
-				<% end %>
-			</div>
 
 			<br>
 		</div>

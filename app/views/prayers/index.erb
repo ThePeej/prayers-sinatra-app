@@ -14,28 +14,26 @@
 <div class="columns">
 	<div class="column is-8 is-offset-2">
 		<% if @prayers.count > 0 %>
-			<h2 class="title">So many prayers to pray about!</h2>
+			<h2 class="title is-2 centered">So many prayers to pray about!</h2>
 			<% @prayers.each do |prayer| %>
 				<a href="/prayers/<%=prayer.id%>">
-					<div class="box prayer">
-					  	<article class="media">
-					    	<div class="media-content">
-					      		<div class="content">
-					        		<p>
-					        			<% if prayer.anonymous? %>
-											<strong>Anonymous - </strong>
-										<% else %>
-											<strong><%=prayer.author.username%> - </strong>
-										<% end %>
-										<em><%=prayer.overview%></em>
-										<br>
-										<%=prayer.details%>
-					        		</p>
-					      		</div>
-					    	</div>
-					  	</article>
-					</div>
+				  	<article class="message">
+				    	<div class="message-header">
+			        		<p>
+			        			<% if prayer.anonymous? %>
+									<strong>Anonymous - </strong>
+								<% else %>
+									<strong><%=prayer.author.username%> - </strong>
+								<% end %>
+								<em><%=prayer.overview%></em>
+							</p>
+						</div>
+						<div class="message-body">
+							<%=prayer.details%>	
+				    	</div>
+				  	</article>
 				</a>
+				<br>
 			<% end %>
 		<% else %>
 			<h2 class="title">No public prayers to display</h2>
