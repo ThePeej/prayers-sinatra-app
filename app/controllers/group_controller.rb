@@ -162,7 +162,7 @@ class GroupController <ApplicationController
 			flash.next[:message] = "Added #{new_member.name} to the group!"
 			group.members << new_member
 		else
-			flash.next[:message] = "Unable to find that person"
+			flash.next[:error] = "Unable to find that person"
 		end
 		redirect "/groups/#{group.id}"
 	end
