@@ -2,7 +2,7 @@ class UserController < ApplicationController
 
 	get '/signup' do
 		if logged_in?
-			flash.next[:greeting] = "Already logged in as #{current_user.username}"
+			flash.next[:greeting] = "Already logged in as #{current_user.username}" #does not allow logged_in user to sign up
 			redirect '/prayers'
 		else
 
@@ -13,7 +13,7 @@ class UserController < ApplicationController
 	post '/signup' do
 		user = User.new(params)
 		# requires unique email for all users
-		if User.all.any?{|user|user.email.downcase == params["email"].downcase||user.username.downcase == params["username"].downcase}
+		if User.all.any?{|user|user.email.downcase == params["email"].downcase||user.username.downcase == params["username"].downcase} #checks if existing user has matching email or username
 			flash.next[:error] = "Username or email is already associated with an account"
 			redirect "/signup"
 		else
@@ -67,7 +67,7 @@ class UserController < ApplicationController
 
 	get '/users/:id/edit' do
 		@user = User.find(params[:id])
-		if @user == current_user
+		if @user == current_user #user can only edit their own account
 			erb :"users/edit"
 		else
 			flash.next[:error] = "You do not have permission to edit that account"
@@ -77,7 +77,7 @@ class UserController < ApplicationController
 
 	patch '/users/:id' do
 		user = User.find(params[:id]) 
-		# requires unique email for all users
+		# requires unique email and username for all users
 		if user.email != params["email"] && User.all.any?{|user|user.email.downcase == params["email"].downcase}
 
 			flash.next[:error] = "Email is already associated with an account"
@@ -101,7 +101,7 @@ class UserController < ApplicationController
 
 	get '/users/:id/delete' do
 		@user = User.find(params[:id])
-		if @user == current_user
+		if @user == current_user #users can only delete their own account
 			erb :"users/delete"
 		else
 			flash.next[:error] = "You do not have permission to delete that account"
@@ -111,10 +111,10 @@ class UserController < ApplicationController
 
 	delete '/users/:id/delete' do
 		user = User.find(params[:id])
-		user.prayers.destroy_all
-		user.lead_groups.destroy_all
-		user.destroy
-		session.clear
+		user.prayers.destroy_all #user prayers are deleted first
+		user.lead_groups.destroy_all #then groups that user leads
+		user.destroy #then finally user is deleted
+		session.clear #logs out of site
 		flash.next[:greeting] = "Account has been deleted"
 		redirect to '/prayers'
 	end

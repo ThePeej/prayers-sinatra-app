@@ -16,7 +16,7 @@ class GroupController <ApplicationController
 
 	post '/groups' do
 		group = Group.new(:name => params["name"], :description => params["description"], :private? => !!params["private"])
-		group.leader = current_user
+		group.leader = current_user #upon group creation, current_user is both assigned as group leader and added to group members list
 		group.members << current_user
 		if group.save
 			redirect "/groups/#{group.id}"
@@ -30,21 +30,21 @@ class GroupController <ApplicationController
 
 	get '/groups/:id' do
 		@group = Group.find(params[:id])
-		if @group.members.include?(current_user)
-			@prayers = @group.prayers.sort.reverse
+		if @group.members.include?(current_user) #checks if current_user is part of group
+			@prayers = @group.prayers.sort.reverse #if so, all of groups' prayers are collected
 		else
-			@prayers = @group.prayers.find_all{|prayer|prayer.public?}.sort.reverse
+			@prayers = @group.prayers.find_all{|prayer|prayer.public?}.sort.reverse #otherwise, only public prayers are collected
 		end
 		if !logged_in?
 			flash.next[:error] = "Please log in"
 			redirect "/login"
 		end
-		if @group.private? == false
-			erb :"groups/show"
-		elsif @group.private? == true && @group.members.any?{|member| member.id == current_user.id}
+		if @group.private? == false #checks if group is private
+			erb :"groups/show" #if not, loads group show page
+		elsif @group.private? == true && @group.members.any?{|member| member.id == current_user.id} #if so and current user is part of group, loads group show page
 			erb :"groups/show"
 		else
-			flash.next[:error] = "You do not have access to view that group"
+			flash.next[:error] = "You do not have access to view that group" #otherwise, current_user cannot view private group they are not a part of
 			redirect '/groups'
 		end
 	end
@@ -55,7 +55,7 @@ class GroupController <ApplicationController
 			flash.next[:error] = "Please log in"
 			redirect "/login"
 		end
-		if @group.leader = current_user
+		if @group.leader = current_user #only group leader can edit group
 			erb :"groups/edit"
 		else
 			flash.next[:error] = "You do not have permission to edit this group"
@@ -80,10 +80,10 @@ class GroupController <ApplicationController
 			flash.next[:error] = "Please log in"
 			redirect "/login"
 		end
-		if @group.members.include?(current_user)
+		if @group.members.include?(current_user) #user can't rejoin group they already are a part of
 			flash.next[:error] = "You are already part of this group"
 			redirect "/groups/#{@group.id}"
-		elsif @group.private?
+		elsif @group.private? #user cannot join a private group they are not a part of
 			flash.next[:error] = "You do not have permission to join that private group"
 			redirect "/groups"
 		else
@@ -93,7 +93,7 @@ class GroupController <ApplicationController
 
 	post '/groups/:id/join' do
 		group = Group.find(params[:id])
-		group.members << current_user
+		group.members << current_user #adds current_user to group's member list
 		group.save
 		flash.next[:message] = "You've joined the group!"
 		redirect "/groups/#{group.id}"
@@ -105,11 +105,11 @@ class GroupController <ApplicationController
 			flash.next[:error] = "Please log in"
 			redirect "/login"
 		end
-		if @group.leader ==current_user
+		if @group.leader ==current_user #prevents group leader to leave group
 			flash.next[:error] = "You cannot leave a group you lead"
 			redirect "/groups/#{@group.id}"
-		elsif !@group.members.include?(current_user)
-			if !@group.private?
+		elsif !@group.members.include?(current_user) #user cannot leave any group they are not a part of
+			if !@group.private? 
 				flash.next[:error] = "You are not part of this group"
 				redirect "/groups/#{@group.id}"
 			else
@@ -131,7 +131,7 @@ class GroupController <ApplicationController
 
 	get '/groups/:id/delete' do
 		@group = Group.find(params[:id])
-		if logged_in? && @group.leader == current_user
+		if logged_in? && @group.leader == current_user #only group leader can delete a group
 			erb :"groups/delete"
 		elsif logged_in?
 			flash.next[:error] = "You do not have permission to delete this group"
@@ -153,7 +153,7 @@ class GroupController <ApplicationController
 		redirect "/groups/#{params[:id]}"
 	end
 
-	post '/groups/:id/add_member' do
+	post '/groups/:id/add_member' do #searches through User db by username, email, and name to find a match and adds match to group's member list
 		group = Group.find(params[:id])
 		if User.find_by(:username => params["add_member"]) || User.find_by(:email => params["add_member"])
 			new_member = User.find_by(:username => params["add_member"]) if !!User.find_by(:username => params["add_member"])

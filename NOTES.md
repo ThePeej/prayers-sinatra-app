@@ -3,21 +3,7 @@
 ----- TODO -----
 
 
-Read Me
-
-
-
-
-
-
-
-
 ---- OPTIONAL ----
-
-Add comments (comments belong to prayer/vice versa.... comments also belong to users/vice verse???)
-	- New page would be prayer show page
-	- Edit page would be....separate edit page that has prayer overview and details, then a text box containing comment to be edited
-	- Delete
 
 
 ----- DONE -----
@@ -48,3 +34,5 @@ Prayers posted anonymously can still be deleted if user has account and is logge
 Style Account/User Show/ User Edit Page
 
 Style all of Groups pages
+
+Read Me
